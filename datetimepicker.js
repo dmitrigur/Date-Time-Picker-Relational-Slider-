@@ -284,6 +284,7 @@
 				event.cancelBubble=true;
 				if (event.targetTouches!=null) {
 					var touch=event.targetTouches[event.targetTouches.length-1];
+	alert(touch);
 					event.clientX=touch.clientX;
 					event.clientY=touch.clientY;
 				};
