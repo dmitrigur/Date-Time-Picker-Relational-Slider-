@@ -1,4 +1,12 @@
-# Date-Time-Picker-Relational-Slider-
-This date time picker desing as set of related whells
+<h2>Example of code</h2>
 
-This datetimepicker for mobile use, allows assigment of lower level by controlling upper level.
+<pre>
+    <div class="container">
+        <div class="block two first">
+            <h2>Your title</h2>
+            <div class="wrap">
+                //Your content
+            </div>
+        </div>
+    </div>
+</pre>
