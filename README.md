@@ -6,7 +6,6 @@ This helps in positiong lowers values by rolling uppers, if not to exact, but de
 [Example](http://rawgit.com/dmitrigur/Date-Time-Picker-Relational-Slider-/master/example.html)
 
 HTML
-<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
@@ -15,9 +14,6 @@ HTML
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="shortcut icon" href="favicon.ico">
-
-    <title>datetimepicker</title>
-	
     <link href="http://rawgit.com/dmitrigur/Date-Time-Picker-Relational-Slider-/master/datetimepicker.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <script src="http://rawgit.com/dmitrigur/Date-Time-Picker-Relational-Slider-/master/datetimepicker.js"></script>
@@ -55,7 +51,6 @@ HTML
 	})    
     </script>
   </head>
-
   <body style="font-family: arial">
 	<p>Date Time (Result type: 'time')<input id="a1"></p>
 	<p>Date (Result type: 'date')<input id="a2"></p>
