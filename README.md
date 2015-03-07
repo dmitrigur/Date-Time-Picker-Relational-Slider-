@@ -5,8 +5,7 @@ This helps in positiong lowers values by rolling uppers, if not to exact, but de
 
 [Example](http://rawgit.com/dmitrigur/Date-Time-Picker-Relational-Slider-/master/example.html)
 
-<!DOCTYPE html>
-<html lang="en">
+'<html lang="en">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -60,4 +59,4 @@ This helps in positiong lowers values by rolling uppers, if not to exact, but de
 		<span>D:<input id="a3d"></span>
 	</p>
  </body>
-</html>
+</html>'
