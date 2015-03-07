@@ -15,15 +15,17 @@ $(document).ready(function() {
 			$(elm).attr("ts",ts);
 		}
 	})
-	$("#a3y,#a3m,#a3d").each().HorecaTechDateTimePicker({
-		ResultMode:"object",
-		TruncateResult:true,
-		LevelSet:["FullYear","Month","Date"],
-		onClose:function(elm,ts,result) {
-			$("#a3y").val(result.FullYear);
-			$("#a3y").val(result.Month);
-			$("#a3y").val(result.Date);
-			$("#a3y,#a3m,#a3d").attr("ts",ts);
-		}
+	$("#a3y,#a3m,#a3d").each(function() 
+		$(this).HorecaTechDateTimePicker({
+			ResultMode:"object",
+			TruncateResult:true,
+			LevelSet:["FullYear","Month","Date"],
+			onClose:function(elm,ts,result) {
+				$("#a3y").val(result.FullYear);
+				$("#a3y").val(result.Month);
+				$("#a3y").val(result.Date);
+				$("#a3y,#a3m,#a3d").attr("ts",ts);
+			}
+		})
 	})
 })
