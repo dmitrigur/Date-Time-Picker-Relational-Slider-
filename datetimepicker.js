@@ -282,6 +282,7 @@
 				event.stopPropagation();
 				event.preventDefault();	
 				event.cancelBubble=true;
+	alert(JSON.stringify(event));
 				if (event.targetTouches!=null) {
 					var touch=event.targetTouches[event.targetTouches.length-1];
 	alert(touch);
