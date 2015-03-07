@@ -9,9 +9,9 @@ Espesially usefull for mobile interfaces, where date-time adjusting rollers are 
 	<p>Date Time (Result type: 'time')<input id="a1"></p>
 	<p>Date (Result type: 'date')<input id="a2"></p>
 	<p>Date (Result type: 'object')
-		<span>Y:<input id="a3y"></span>
-		<span>M:<input id="a3m"></span>
-		<span>D:<input id="a3d"></span>
+		<a>Y:<input id="a3y"></a>
+		<a>M:<input id="a3m"></a>
+		<a>D:<input id="a3d"></a>
 	</p>
 
     <script>
