@@ -283,8 +283,9 @@
 				event.preventDefault();	
 				event.cancelBubble=true;
 				if (event.targetTouches!=null) {
-					event.clientX=event.targetTouches[0].clientX;
-					event.clientY=event.targetTouches[0].clientY;
+					var touch=event.targetTouches[event.targetTouches.length-1];
+					event.clientX=touch.clientX;
+					event.clientY=touch.clientY;
 				};
 	alert(event.clientX,event.clientY)
 				hdtdata.MouseDownPoint=event.clientY;
