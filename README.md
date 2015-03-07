@@ -1,7 +1,8 @@
 <h2>Date Time Picker - JQuery plug-in</h2>
-The New Idea of inter-related wheels mechanism. as Clock.
+The New Idea of inter-related wheels mechanism. like Clock.
 When rolling Upper Wheel "Year", Lower Wheels "Month,Days" also rotating dependently.
-This helps in positiong lowers values by rolling uppers, if not to exact, but definetaly close to. espesially for mobile apps, making time adjusting much quicker.
+This helps in positiong lower values by rolling uppers, if not exact to, but definetaly close to desired position, making time adjusting much quicker.
+Espesially usefull for mobile interfaces, where date-time adjusting rollers are commonly used.
 
 [Example](http://rawgit.com/dmitrigur/Date-Time-Picker-Relational-Slider-/master/example.html)
 
