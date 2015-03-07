@@ -24,4 +24,4 @@ $(document).ready(function() {
 			$(elm).attr("ts",ts);
 		}
 	})
-}
+})
