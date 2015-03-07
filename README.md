@@ -5,6 +5,15 @@ This helps in positiong lowers values by rolling uppers, if not to exact, but de
 
 [Example](http://rawgit.com/dmitrigur/Date-Time-Picker-Relational-Slider-/master/example.html)
 
+	<p>Date Time (Result type: 'time')<input id="a1"></p>
+	<p>Date (Result type: 'date')<input id="a2"></p>
+	<p>Date (Result type: 'object')
+		<span>Y:<input id="a3y"></span>
+		<span>M:<input id="a3m"></span>
+		<span>D:<input id="a3d"></span>
+	</p>
+
+
     <script>
 	$(document).ready(function() {
 		$("#a1").HorecaTechDateTimePicker({
@@ -39,13 +48,4 @@ This helps in positiong lowers values by rolling uppers, if not to exact, but de
 	})    
     </script>
     
-  <body style="font-family: arial">
-	<p>Date Time (Result type: 'time')<input id="a1"></p>
-	<p>Date (Result type: 'date')<input id="a2"></p>
-	<p>Date (Result type: 'object')
-		<span>Y:<input id="a3y"></span>
-		<span>M:<input id="a3m"></span>
-		<span>D:<input id="a3d"></span>
-	</p>
- </body>
 
