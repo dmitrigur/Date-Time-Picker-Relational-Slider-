@@ -1,0 +1,106 @@
+	.hdtpicker_holder {
+		margin: 5px;
+		font-size:24px;
+		width:auto;
+		overflow:hidden;
+		height:200;
+		position:relative;
+		display:block;
+	}
+	.hdtpicker_column_holder {
+		overflow:hidden;
+		height:280px;
+		top: -40;
+		display:inline-block;
+		position: relative;
+		background-image : -webkit-linear-gradient(top,RGB(120,120,106)0%,RGB(240,240,220)20%,RGB(255,255,240)45%,RGB(240,240,220)70%,RGB(120,120,106)100%)
+	}
+	.hdtpicker_container {
+		width:100%;
+		position: absolute;
+		left:0;
+	}
+	.hdtpicker_cell {
+		width:100%;
+		text-align:center;
+		vertical-align:baseline;
+		display:block;
+		background-image : -webkit-linear-gradient(top,HSLA(0,0%,50%,0.2)0%,HSLA(0,0%,100%,0.2)25%,HSLA(0,0%,0%,0.2)100%);
+		cursor:arrow;
+	}
+	.hdtpicker_mark {
+		height:2;
+		width:100%;
+		position:absolute;
+		top:139;
+		background-color:RGB(255,0,0);
+		opacity:0.3;
+	}
+	.hdtpicker_bar {
+		height:30;
+		top:85;
+		position: absolute;
+		opacity:0;
+		z-index:1;
+		box-shadow: 0px 2px 5px HSLA(120,70%,15%,1);
+		border: 1px solid HSLA(120,70%,15%,1);
+		margin-top:-1;
+		margin-left:-1;
+	}
+	.hdtpicker_column_bar {
+		opacity:0;
+		background-color:RGB(249,249,240);
+		height:30;
+		width:100%;
+		position: absolute;
+		cursor:arrow;
+	}
+	.hdtpicker_column_bar_button {
+		height:100%;
+		background-color:tranparent;
+		position:relative;
+		display:inline-block;
+	}
+	.hdtpicker_button_panel {
+		margin: 5px;
+		height:30px;
+		width:100%;
+		position: relative;
+		display: block;
+	}
+	.hdtpicker_buttons {
+		width: 50%;
+		margin: auto;
+		color: "black";
+		font-size:20px;
+		line-height:30px;
+		position: relative;
+		display: inline-block;
+		cursor:arrow;
+	}
+	.hdtpicker_frame{
+		padding:1px;
+		display:block;
+		position:absolute;
+		z-index:20;
+		box-shadow: 2px 2px 5px HSLA(120,70%,15%,0.85);
+		-webkit-touch-callout: none;
+		-webkit-user-select: none;
+		-khtml-user-select: none;
+		-moz-user-select: none;
+		-ms-user-select: none;
+		user-select: none;
+		font-family: Roboto;
+		opacity:0;
+		border: 2px outset HSLA(120,70%,15%,0.85);
+	}
+	.hdtpicker_separator {
+		width:6px;
+		display:block;
+		position:absolute;
+		font-weight:"bold";
+		font-size:24px;
+		color: "black";
+		line-height:30px;
+		top:0;
+	}
