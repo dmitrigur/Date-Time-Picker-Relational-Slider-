@@ -15,7 +15,7 @@ $(document).ready(function() {
 			$(elm).attr("ts",ts);
 		}
 	})
-	$("#a3y,#a3m,#a3d").each(function() 
+	$("#a3y,#a3m,#a3d").each(function() {
 		$(this).HorecaTechDateTimePicker({
 			ResultMode:"object",
 			TruncateResult:true,
