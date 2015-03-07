@@ -1,15 +1,8 @@
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-<script src="http://rawgit.com/dmitrigur/Date-Time-Picker-Relational-Slider-/master/datetimepicker.js"></script>
-<link href="http://rawgit.com/dmitrigur/Date-Time-Picker-Relational-Slider-/master/datetimepicker.css" rel="stylesheet">
-<script src="http://rawgit.com/dmitrigur/Date-Time-Picker-Relational-Slider-/master/datetimepickerreadme.js"></script>
 <h2>Date Time Picker</h2>
+The New Idea of interrelated wheel mechanism. as Clock.
+When rolling Upper Wheel "Year", Lower Wheels "Month,Days" also rotating dependently.
+This helps in positiong lowers values by rolling uppers, if not to exact, but definetaly close to. espesially for mobile apps, making time adjusting much quicker.
 <pre>
-    <div class="container">
-        <div class="block two first">
-            <h2></h2>
-            <div class="wrap">
-               <input id="a1"> 
-            </div>
-        </div>
-    </div>
+    <span href="http://rawgit.com/dmitrigur/Date-Time-Picker-Relational-Slider-/master/example.html">Example</span>
 </pre>
+
