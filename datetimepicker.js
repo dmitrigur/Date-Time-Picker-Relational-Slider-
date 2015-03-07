@@ -282,14 +282,14 @@
 				event.stopPropagation();
 				event.preventDefault();	
 				event.cancelBubble=true;
-	alert(JSON.stringify(event));
+console.log(event);
 				if (event.targetTouches!=null) {
 					var touch=event.targetTouches[event.targetTouches.length-1];
-	alert(touch);
+	window.alert(touch);
 					event.clientX=touch.clientX;
 					event.clientY=touch.clientY;
 				};
-	alert(event.clientX,event.clientY)
+	window.alert(event.clientX,event.clientY)
 				hdtdata.MouseDownPoint=event.clientY;
 				hdtdata.MouseLevel=$(this).attr("level");
 				hdtpicker_Timer.Stop(hdtdata.nowTimer);
