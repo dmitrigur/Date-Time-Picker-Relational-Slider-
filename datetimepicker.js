@@ -286,6 +286,7 @@
 					event.clientX=event.targetTouches[0].clientX;
 					event.clientY=event.targetTouches[0].clientY;
 				};
+	alert(event.clientX,event.clientY)
 				hdtdata.MouseDownPoint=event.clientY;
 				hdtdata.MouseLevel=$(this).attr("level");
 				hdtpicker_Timer.Stop(hdtdata.nowTimer);
