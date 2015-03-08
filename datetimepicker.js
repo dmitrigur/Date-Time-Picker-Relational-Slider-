@@ -424,9 +424,9 @@
 		if (targethdtoptions[this.attr("id")].onStop=="onClose")
 			targethdtoptions[this.attr("id")].onStop=targethdtoptions[this.attr("id")].onClose;
 		if (targethdtoptions[this.attr("id")].inProgress=="onStop")
-			targethdtoptions[this.attr("id")].inProgress=targethdtoptions[this.attr("id")].onStop;
-		if (targethdtoptions[this.attr("id")].onBlur=="onClose")
-			targethdtoptions[this.attr("id")].onBlur=targethdtoptions[this.attr("id")].onClose;
+			targethdtoptions[this.attr("id")].inProgress=targethdtoptions[this.attr("id")].onStop
+		else if (targethdtoptions[this.attr("id")].inProgress=="onClose")
+			targethdtoptions[this.attr("id")].inProgress=targethdtoptions[this.attr("id")].onClose;
 		for (var level in targethdtoptions[this.attr("id")].LevelSet) {
 			var Level_=targethdtoptions[this.attr("id")].LevelSet[level];
 			targethdtoptions[this.attr("id")].Dependence[Level_]=[];
@@ -692,10 +692,6 @@
 					};
 					if (typeof (targethdtoptions[hdtdata.targetID].onBlur)=='function')
 						targethdtoptions[hdtdata.targetID].onBlur(hdtdata.target,hdtdata.iniTS,result);
-					else if (typeof (targethdtoptions[hdtdata.targetID].onStop)=='function')
-						targethdtoptions[hdtdata.targetID].onStop(hdtdata.target,hdtdata.iniTS,result);
-					else if (typeof (targethdtoptions[hdtdata.targetID].inProgress)=='function')
-						targethdtoptions[hdtdata.targetID].inProgress(hdtdata.target,hdtdata.iniTS,result);
 					else if (typeof (targethdtoptions[hdtdata.targetID].onClose)=='function')
 						targethdtoptions[hdtdata.targetID].onClose(hdtdata.target,hdtdata.iniTS,result);
 				}
