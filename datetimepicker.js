@@ -523,7 +523,7 @@
 			$(document).on("mousemove",hdtmoveprogress);
 			$(document).on("touchend",hdtmoveend);
 			$(document).on("mouseup",hdtmoveend);
-			$(document).on("mouseleave",hdtmoveend);
+//			$(document).on("mouseleave",hdtmoveend);
 			$(".hdtpicker_column_holder").on("touchstart",hdtmovestart);
 			$(".hdtpicker_column_holder").on("mousedown",hdtmovestart);
 			$(".hdtpicker_column_holder,.hdtpicker_column_bar_button").on("mousewheel", function(event) {
