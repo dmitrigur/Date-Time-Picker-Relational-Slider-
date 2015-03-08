@@ -335,6 +335,8 @@
 						$('.hdtpicker_mark').css("opacity",0.3);
 						$("#hdtpicker_bar,.hdtpicker_column_bar").css({display:"block"});
 						$("#hdtpicker_bar,.hdtpicker_column_bar").stop().animate({opacity:1},400);
+						if (typeof (targethdtoptions[hdtdata.targetID].onStop)=='function')
+							targethdtoptions[hdtdata.targetID].onStop(hdtdata.target,hdtdata.iniTS,result);
 					} else {
 						dir=(v>0)?1:-1;
 						a=-0.005*dir;
@@ -358,6 +360,8 @@
 								$('.hdtpicker_mark').css("opacity",0.3);
 								$("#hdtpicker_bar,.hdtpicker_column_bar").css({display:"block"});
 								$("#hdtpicker_bar,.hdtpicker_column_bar").stop().animate({opacity:1},400);
+								if (typeof (targethdtoptions[hdtdata.targetID].onStop)=='function')
+									targethdtoptions[hdtdata.targetID].onStop(hdtdata.target,hdtdata.iniTS,result);
 							} 
 						},a,v,dir,hdtdata.MouseLevel,iniMark)
 					}
@@ -376,6 +380,8 @@
 		targethdtoptions[this.attr("id")]=$.extend(true,opt_,opt);
 		targethdtoptions[this.attr("id")].LevelSet=(opt.LevelSet==null)?targethdtoptions[this.attr("id")].LevelSet:opt.LevelSet;
 		targethdtoptions[this.attr("id")].Dependence={};
+		if (targethdtoptions[this.attr("id")].onStop=="onClose")
+			targethdtoptions[this.attr("id")].onStop=targethdtoptions[this.attr("id")].onClose;
 		for (var level in targethdtoptions[this.attr("id")].LevelSet) {
 			var Level_=targethdtoptions[this.attr("id")].LevelSet[level];
 			targethdtoptions[this.attr("id")].Dependence[Level_]=[];
