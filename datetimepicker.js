@@ -124,6 +124,7 @@
 			};
 			$("."+level+".hdtpicker_cell").not("#hdtpicker_cell"+level+sel).css({color:targethdtoptions[hdtdata.targetID].TextColor,fontWeight:"normal",fontFamily:hdtdata.textFontFamily});
 			$("#hdtpicker_cell"+level+sel).css({color:targethdtoptions[hdtdata.targetID].SelectedTextColor,fontWeight:hdtdata.selectedFontWeight,fontFamily:hdtdata.selectedTextFontFamily});
+console.log(targethdtoptions[hdtdata.targetID].FlagInProgress);
 			if (targethdtoptions[hdtdata.targetID].FlagInProgress) {
 				switch (targethdtoptions[hdtdata.targetID].ResultMode) {
 					case "time" :{var result=new Date(hdtdata.iniTS);result=result.toLocaleString();$(hdtdata.target).val(result);break;}
