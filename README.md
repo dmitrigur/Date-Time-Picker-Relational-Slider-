@@ -51,5 +51,4 @@ Espesially usefull for mobile interfaces, where date-time adjusting rollers are 
 		})
 	})    
     </script>
-  </head>
 
