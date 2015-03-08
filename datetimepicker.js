@@ -125,8 +125,6 @@
 			$("."+level+".hdtpicker_cell").not("#hdtpicker_cell"+level+sel).css({color:targethdtoptions[hdtdata.targetID].TextColor,fontWeight:"normal",fontFamily:hdtdata.textFontFamily});
 			$("#hdtpicker_cell"+level+sel).css({color:targethdtoptions[hdtdata.targetID].SelectedTextColor,fontWeight:hdtdata.selectedFontWeight,fontFamily:hdtdata.selectedTextFontFamily});
 			if (targethdtoptions[hdtdata.targetID].FlagInProgress) {
-				if (targethdtoptions[hdtdata.targetID].TruncateResult)
-					hdtdata.iniTS=hdtpicker_datetruncateTS(hdtdata.iniTS,targethdtoptions[hdtdata.targetID].LevelSet.length-1);
 				switch (targethdtoptions[hdtdata.targetID].ResultMode) {
 					case "time" :{var result=new Date(hdtdata.iniTS);result=result.toLocaleString();$(hdtdata.target).val(result);break;}
 					case "date" :{var result=new Date(hdtdata.iniTS);result=result.toLocaleDateString();$(hdtdata.target).val(result);break;}
@@ -355,8 +353,6 @@
 						$("#hdtpicker_bar,.hdtpicker_column_bar").css({display:"block"});
 						$("#hdtpicker_bar,.hdtpicker_column_bar").stop().animate({opacity:1},400);
 						if (targethdtoptions[hdtdata.targetID].FlagOnStop) {
-							if (targethdtoptions[hdtdata.targetID].TruncateResult)
-								hdtdata.iniTS=hdtpicker_datetruncateTS(hdtdata.iniTS,targethdtoptions[hdtdata.targetID].LevelSet.length-1);
 							switch (targethdtoptions[hdtdata.targetID].ResultMode) {
 								case "time" :{var result=new Date(hdtdata.iniTS);result=result.toLocaleString();$(hdtdata.target).val(result);break;}
 								case "date" :{var result=new Date(hdtdata.iniTS);result=result.toLocaleDateString();$(hdtdata.target).val(result);break;}
@@ -394,8 +390,6 @@
 								$("#hdtpicker_bar,.hdtpicker_column_bar").css({display:"block"});
 								$("#hdtpicker_bar,.hdtpicker_column_bar").stop().animate({opacity:1},400);
 								if (targethdtoptions[hdtdata.targetID].FlagOnStop) {
-									if (targethdtoptions[hdtdata.targetID].TruncateResult)
-										hdtdata.iniTS=hdtpicker_datetruncateTS(hdtdata.iniTS,targethdtoptions[hdtdata.targetID].LevelSet.length-1);
 									switch (targethdtoptions[hdtdata.targetID].ResultMode) {
 										case "time" :{var result=new Date(hdtdata.iniTS);result=result.toLocaleString();$(hdtdata.target).val(result);break;}
 										case "date" :{var result=new Date(hdtdata.iniTS);result=result.toLocaleDateString();$(hdtdata.target).val(result);break;}
@@ -683,7 +677,7 @@
 				$("#hdtpicker_frame").remove();
 				$(document).off("mousedown.hdtdatetime touchstart.hdtdatetime keydown.hdtdatetime scroll.hdtdatetime");
 				hdtpicker_Timer.Abort(hdtdata.nowTimer);
-				if (targethdtoptions[hdtdata.targetID].FlagOnBlur) {
+				if (targethdtoptions[hdtdata.targetID].FlagOnBlur || targethdtoptions[hdtdata.targetID].FlagOnStop || targethdtoptions[hdtdata.targetID].FlagInProgress) {
 					if (targethdtoptions[hdtdata.targetID].TruncateResult)
 						hdtdata.iniTS=hdtpicker_datetruncateTS(hdtdata.iniTS,targethdtoptions[hdtdata.targetID].LevelSet.length-1);
 					switch (targethdtoptions[hdtdata.targetID].ResultMode) {
@@ -698,6 +692,12 @@
 					};
 					if (typeof (targethdtoptions[hdtdata.targetID].onBlur)=='function')
 						targethdtoptions[hdtdata.targetID].onBlur(hdtdata.target,hdtdata.iniTS,result);
+					else if (typeof (targethdtoptions[hdtdata.targetID].onStop)=='function')
+						targethdtoptions[hdtdata.targetID].onStop(hdtdata.target,hdtdata.iniTS,result);
+					else if (typeof (targethdtoptions[hdtdata.targetID].inProgress)=='function')
+						targethdtoptions[hdtdata.targetID].inProgress(hdtdata.target,hdtdata.iniTS,result);
+					else if (typeof (targethdtoptions[hdtdata.targetID].onClose)=='function')
+						targethdtoptions[hdtdata.targetID].onClose(hdtdata.target,hdtdata.iniTS,result);
 				}
 			});
 		});
