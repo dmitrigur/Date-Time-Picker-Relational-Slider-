@@ -19,7 +19,6 @@ Espesially usefull for mobile interfaces, where date-time adjusting rollers are 
 			$("#a1").HorecaTechDateTimePicker({
 				TruncateResult:true,
 				onClose:function(elm,ts,result) {
-					$(elm).val(result);
 					$(elm).attr("ts",ts);
 				}
 			})
@@ -30,7 +29,6 @@ Espesially usefull for mobile interfaces, where date-time adjusting rollers are 
 				FlagOnStop:true,
 				FlagInProgress:true,
 				onClose:function(elm,ts,result) {
-					$(elm).val(result);
 					$(elm).attr("ts",ts);
 				}
 			})
