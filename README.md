@@ -6,9 +6,9 @@ Espesially usefull for mobile interfaces, where date-time adjusting rollers are 
 
 [Example](http://rawgit.com/dmitrigur/Date-Time-Picker-Relational-Slider-/master/example.html)
 
-	<p>Date Time (Result type: 'time')<input id="a1"></p>
-	<p>Date (Result type: 'date')<input id="a2"></p>
-	<p>Date (Result type: 'object')
+	<p>Date Time (Result type: 'time', field is changing in progress)<input id="a1"></p>
+	<p>Date (Result type: 'date', field is changing on stop)<input id="a2"></p>
+	<p>Date (Result type: 'object', field is changing on Done or Blur)
 		<a>Y:<input id="a3y"></a>
 		<a>M:<input id="a3m"></a>
 		<a>D:<input id="a3d"></a>
@@ -21,7 +21,9 @@ Espesially usefull for mobile interfaces, where date-time adjusting rollers are 
 			onClose:function(elm,ts,result) {
 				$(elm).val(result);
 				$(elm).attr("ts",ts);
-			}
+			},
+			onStop:"onClose",
+			onProgress:"onStop"
 		})
 		$("#a2").HorecaTechDateTimePicker({
 			ResultMode:"date",
@@ -30,7 +32,8 @@ Espesially usefull for mobile interfaces, where date-time adjusting rollers are 
 			onClose:function(elm,ts,result) {
 				$(elm).val(result);
 				$(elm).attr("ts",ts);
-			}
+			},
+			onStop:"onClose"
 		})
 		$("#a3y,#a3m,#a3d").each(function() {
 			$(this).HorecaTechDateTimePicker({
@@ -42,7 +45,8 @@ Espesially usefull for mobile interfaces, where date-time adjusting rollers are 
 					$("#a3m").val(result.Month+1);
 					$("#a3d").val(result.Date);
 					$("#a3y,#a3m,#a3d").attr("ts",ts);
-				}
+				},
+				onBlur:"onClose"
 			})
 		})
 	})    
