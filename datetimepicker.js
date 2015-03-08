@@ -557,6 +557,9 @@
 							$("#hdtpicker_bar,.hdtpicker_column_bar").stop().animate({opacity:1},400);
 			})
 			$("#hdtpicker_now_button").on("click",function() {
+				event.stopPropagation();
+				event.preventDefault();	
+				event.cancelBubble=true;
 				if (hdtdata.stopwatch) {
 					hdtdata.stopwatch=false;
 					$("#hdtpicker_now_button").html("<center>"+targethdtoptions[hdtdata.targetID].NOW+"</center>");
@@ -595,6 +598,9 @@
 				}
 			});
 			$("#hdtpicker_done_button").on("click.hdtdatetime",function() {
+				event.stopPropagation();
+				event.preventDefault();	
+				event.cancelBubble=true;
 				$("#hdtpicker_frame").remove();
 				$(document).off("mousedown.hdtdatetime touchstart.hdtdatetime keydown.hdtdatetime scroll.hdtdatetime");
 				hdtpicker_Timer.Abort(hdtdata.nowTimer);
@@ -616,7 +622,7 @@
 			$("#hdtpicker_frame").on("click.hdtdatetime",function(e) {
 				e.stopPropagation();
 			});
-			$(document).on("mousedown.hdtdatetime touchstart.hdtdatetime keydown.hdtdatetime",function() {
+			$(document).on("mousedown.hdtdatetime touchstart.hdtdatetime keydown.hdtdatetime",function(event) {
 				$("#hdtpicker_frame").remove();
 				$(document).off("mousedown.hdtdatetime touchstart.hdtdatetime keydown.hdtdatetime scroll.hdtdatetime");
 				hdtpicker_Timer.Abort(hdtdata.nowTimer);
