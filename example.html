@@ -18,7 +18,6 @@
 		$("#a1").HorecaTechDateTimePicker({
 			TruncateResult:true,
 			onClose:function(elm,ts,result) {
-				$(elm).val(result);
 				$(elm).attr("ts",ts);
 			}
 		})
@@ -29,7 +28,6 @@
 			FlagOnStop:true,
 			FlagInProgress:true,
 			onClose:function(elm,ts,result) {
-				$(elm).val(result);
 				$(elm).attr("ts",ts);
 			}
 		})
