@@ -126,17 +126,17 @@
 			$("#hdtpicker_cell"+level+sel).css({color:targethdtoptions[hdtdata.targetID].SelectedTextColor,fontWeight:hdtdata.selectedFontWeight,fontFamily:hdtdata.selectedTextFontFamily});
 			if (targethdtoptions[hdtdata.targetID].FlagInProgress) {
 				switch (targethdtoptions[hdtdata.targetID].ResultMode) {
-					case "time" :{var result=new Date(hdtdata.TS);result=result.toLocaleString();$(hdtdata.target).val(result);break;}
-					case "date" :{var result=new Date(hdtdata.TS);result=result.toLocaleDateString();$(hdtdata.target).val(result);break;}
+					case "time" :{var result=new Date(TS);result=result.toLocaleString();$(hdtdata.target).val(result);break;}
+					case "date" :{var result=new Date(TS);result=result.toLocaleDateString();$(hdtdata.target).val(result);break;}
 					case "object" : {
-										var date=new Date(hdtdata.TS),result={};
+										var date=new Date(TS),result={};
 											for (var level in targethdtoptions[hdtdata.targetID].LevelSet)
 												result[targethdtoptions[hdtdata.targetID].LevelSet[level]]=date['get'+targethdtoptions[hdtdata.targetID].LevelSet[level]]();
 										break;
 									}
 					};
 				if (typeof (targethdtoptions[hdtdata.targetID].inProgress)=='function')
-					targethdtoptions[hdtdata.targetID].inProgress(hdtdata.target,hdtdata.TS,result);
+					targethdtoptions[hdtdata.targetID].inProgress(hdtdata.target,TS,result);
 			}
 		},
 		hdtpicker_getSet = function(TS,starttimestamp,level) {
