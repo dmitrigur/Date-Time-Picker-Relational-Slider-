@@ -596,7 +596,7 @@
 			});
 			$("#hdtpicker_done_button").on("click.hdtdatetime",function() {
 				$("#hdtpicker_frame").remove();
-				$(document).off("click.hdtdatetime scroll.hdtdatetime");
+				$(document).off("mousedown.hdtdatetime touchstart.hdtdatetime keydown.hdtdatetime scroll.hdtdatetime");
 				hdtpicker_Timer.Abort(hdtdata.nowTimer);
 				if (targethdtoptions[hdtdata.targetID].TruncateResult)
 					hdtdata.iniTS=hdtpicker_datetruncateTS(hdtdata.iniTS,targethdtoptions[hdtdata.targetID].LevelSet.length-1);
@@ -616,9 +616,9 @@
 			$("#hdtpicker_frame").on("click.hdtdatetime",function(e) {
 				e.stopPropagation();
 			});
-			$(document).on("click.hdtdatetime",function() {
+			$(document).on("mousedown.hdtdatetime touchstart.hdtdatetime keydown.hdtdatetime",function() {
 				$("#hdtpicker_frame").remove();
-				$(document).off("click.hdtdatetime scroll.hdtdatetime");
+				$(document).off("mousedown.hdtdatetime touchstart.hdtdatetime keydown.hdtdatetime scroll.hdtdatetime");
 				hdtpicker_Timer.Abort(hdtdata.nowTimer);
 				if (typeof (targethdtoptions[hdtdata.targetID].onCancel)=='function')
 					targethdtoptions[hdtdata.targetID].onCancel(hdtdata.target,hdtdata.iniTS,result);
