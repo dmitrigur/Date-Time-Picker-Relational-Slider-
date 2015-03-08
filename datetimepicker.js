@@ -527,7 +527,9 @@
 			$(".hdtpicker_column_holder").on("touchstart",hdtmovestart);
 			$(".hdtpicker_column_holder").on("mousedown",hdtmovestart);
 			$(".hdtpicker_column_holder,.hdtpicker_column_bar_button").on("mousewheel", function(event) {
-				e.stopPropagation();
+				event.stopPropagation();
+				event.preventDefault();	
+				event.cancelBubble=true;
 				hdtpicker_Timer.Abort(hdtdata.nowTimer);
 				hdtdata.stopwatch=false;
 				$("#hdtpicker_now_button").html("<center>"+targethdtoptions[hdtdata.targetID].NOW+"</center>");			
