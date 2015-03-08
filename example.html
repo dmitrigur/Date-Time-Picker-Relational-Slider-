@@ -20,7 +20,9 @@
 			onClose:function(elm,ts,result) {
 				$(elm).val(result);
 				$(elm).attr("ts",ts);
-			}
+			},
+			onStop:"onClose",
+			onProgress:"onStop"
 		})
 		$("#a2").HorecaTechDateTimePicker({
 			ResultMode:"date",
@@ -29,7 +31,8 @@
 			onClose:function(elm,ts,result) {
 				$(elm).val(result);
 				$(elm).attr("ts",ts);
-			}
+			},
+			onStop:"onClose"
 		})
 		$("#a3y,#a3m,#a3d").each(function() {
 			$(this).HorecaTechDateTimePicker({
@@ -42,7 +45,7 @@
 					$("#a3d").val(result.Date);
 					$("#a3y,#a3m,#a3d").attr("ts",ts);
 				},
-				onStop:"onClose"
+				onBlur:"onClose"
 			})
 		})
 	})    
