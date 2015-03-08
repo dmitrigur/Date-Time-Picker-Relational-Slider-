@@ -124,7 +124,6 @@
 			};
 			$("."+level+".hdtpicker_cell").not("#hdtpicker_cell"+level+sel).css({color:targethdtoptions[hdtdata.targetID].TextColor,fontWeight:"normal",fontFamily:hdtdata.textFontFamily});
 			$("#hdtpicker_cell"+level+sel).css({color:targethdtoptions[hdtdata.targetID].SelectedTextColor,fontWeight:hdtdata.selectedFontWeight,fontFamily:hdtdata.selectedTextFontFamily});
-console.log(targethdtoptions[hdtdata.targetID].FlagInProgress);
 			if (targethdtoptions[hdtdata.targetID].FlagInProgress) {
 				switch (targethdtoptions[hdtdata.targetID].ResultMode) {
 					case "time" :{var result=new Date(hdtdata.iniTS);result=result.toLocaleString();$(hdtdata.target).val(result);break;}
@@ -138,6 +137,7 @@ console.log(targethdtoptions[hdtdata.targetID].FlagInProgress);
 					};
 				if (typeof (targethdtoptions[hdtdata.targetID].inProgress)=='function')
 					targethdtoptions[hdtdata.targetID].inProgress(hdtdata.target,hdtdata.iniTS,result);
+console.log(result,hdtdata.target);
 			}
 		},
 		hdtpicker_getSet = function(TS,starttimestamp,level) {
