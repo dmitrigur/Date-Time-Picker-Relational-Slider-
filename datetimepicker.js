@@ -556,7 +556,7 @@
 							$("#hdtpicker_bar,.hdtpicker_column_bar").css({display:"block"});
 							$("#hdtpicker_bar,.hdtpicker_column_bar").stop().animate({opacity:1},400);
 			})
-			$("#hdtpicker_now_button").on("click",function() {
+			$("#hdtpicker_now_button").on("touchdown.hdtdatetime mousedown.hdtdatetime",function() {
 				event.stopPropagation();
 				event.preventDefault();	
 				event.cancelBubble=true;
@@ -597,7 +597,7 @@
 					})	
 				}
 			});
-			$("#hdtpicker_done_button").on("click.hdtdatetime",function() {
+			$("#hdtpicker_done_button").on("touchdown.hdtdatetime mousedown.hdtdatetime",function() {
 				event.stopPropagation();
 				event.preventDefault();	
 				event.cancelBubble=true;
