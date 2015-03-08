@@ -556,7 +556,7 @@
 							$("#hdtpicker_bar,.hdtpicker_column_bar").css({display:"block"});
 							$("#hdtpicker_bar,.hdtpicker_column_bar").stop().animate({opacity:1},400);
 			})
-			$("#hdtpicker_now_button").on("touchdown.hdtdatetime mousedown.hdtdatetime",function() {
+			$("#hdtpicker_now_button").on("touchstart.hdtdatetime mousedown.hdtdatetime",function() {
 				event.stopPropagation();
 				event.preventDefault();	
 				event.cancelBubble=true;
@@ -597,7 +597,7 @@
 					})	
 				}
 			});
-			$("#hdtpicker_done_button").on("touchdown.hdtdatetime mousedown.hdtdatetime",function() {
+			$("#hdtpicker_done_button").on("touchstart.hdtdatetime mousedown.hdtdatetime",function() {
 				event.stopPropagation();
 				event.preventDefault();	
 				event.cancelBubble=true;
@@ -619,7 +619,7 @@
 				if (typeof (targethdtoptions[hdtdata.targetID].onClose)=='function')
 					targethdtoptions[hdtdata.targetID].onClose(hdtdata.target,hdtdata.iniTS,result);
 			});
-			$("#hdtpicker_frame").on("click.hdtdatetime",function(e) {
+			$("#hdtpicker_frame").on("mousedown.hdtdatetime touchstart.hdtdatetime keydown.hdtdatetime",function(e) {
 				e.stopPropagation();
 			});
 			$(document).on("mousedown.hdtdatetime touchstart.hdtdatetime keydown.hdtdatetime",function(event) {
