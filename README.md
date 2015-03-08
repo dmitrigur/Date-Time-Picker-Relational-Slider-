@@ -7,8 +7,8 @@ Espesially usefull for mobile interfaces, where date-time adjusting rollers are 
 [Example](http://rawgit.com/dmitrigur/Date-Time-Picker-Relational-Slider-/master/example.html)
 
 	<p>Date Time (Result type: 'time')<input id="a1"></p>
-	<p>Date (Result type: 'date', Field is changing on Stop & and in Progress)<input id="a2"></p>
-	<p>Date (Result type: 'object', Field is changing on Stop & and on Blur)
+	<p>Date (Result type: 'date', Field is changing on Stop & in Progress)<input id="a2"></p>
+	<p>Date (Result type: 'object', Field is changing on Stop & on Blur)
 		<a>Y:<input id="a3y"></a>
 		<a>M:<input id="a3m"></a>
 		<a>D:<input id="a3d"></a>
