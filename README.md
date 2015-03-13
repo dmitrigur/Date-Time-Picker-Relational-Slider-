@@ -4,6 +4,12 @@ When rolling Upper Wheel "Year", Lower Wheels "Month,Days" also rotating depende
 This helps in positioning lower values by rolling uppers, if not exact to, but definetaly close to desired position, making time adjusting much quicker.
 Espesially usefull for mobile interfaces, where date-time adjusting rollers are commonly used.
 
+Functionality:
+1.Dragging wheels resulting fine adjusting
+2.Clicking on desired value outside the bar resulting shifting current timestamp to clicked value, lower values are intacted.
+3.Clicking on bar trancating current timestamp to clicked value
+4.On mousewheel event resulting shifting current stimestamp by fixed interval (years: 5, monthes: by 3 days: by 7, hours: by 3, minutes: by 5 seconds: by 5)
+
 [Example](http://rawgit.com/dmitrigur/Date-Time-Picker-Relational-Slider-/master/example.html)
 
 	<p>Date Time (Result type: 'time')<input id="a1"></p>
