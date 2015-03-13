@@ -23,7 +23,9 @@ paramenters of callback:
 2.result according to ResultType option value (date - date string, time - date-time string, object - separeted values for FullYear,Month,Day,Hours,Minutes,Seconds) 
 
 
-<h2>[Example](http://rawgit.com/dmitrigur/Date-Time-Picker-Relational-Slider-/master/example.html)</h2>
+<h2> 
+[Example](http://rawgit.com/dmitrigur/Date-Time-Picker-Relational-Slider-/master/example.html)
+</h2>
 
 	<p>Date Time (Result type: 'time')<input id="a1"></p>
 	<p>Date (Result type: 'date', Field is changing on Stop & in Progress)<input id="a2"></p>
