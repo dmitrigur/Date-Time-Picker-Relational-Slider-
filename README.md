@@ -8,14 +8,19 @@ Functionality:
 
 Possible callback functions:
 
-onClose - when user clicks Done Button 
+onClose - when user clicks Done Button
+
 onCancel when picker blured 
+
 onStop - when wheels stoped roteting 
+
 inProgress - contantly calling during wheels rotating
 
 paramenters of callback: 
 0.pointer to element; 
-1.result timestamp in miliseconds 
+
+1.result timestamp in miliseconds;
+
 2.result according to ResultType option value (date - date string, time - date-time string, object - separeted values for FullYear,Month,Day,Hours,Minutes,Seconds)
 
 <h2> 
