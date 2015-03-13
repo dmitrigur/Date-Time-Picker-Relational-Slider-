@@ -10,6 +10,19 @@ Functionality:
 3.Clicking on bar trancating current timestamp to clicked value
 4.On mousewheel event resulting shifting current stimestamp by fixed interval (years: 5, monthes: by 3 days: by 7, hours: by 3, minutes: by 5 seconds: by 5)
 
+Possible callback functions:
+
+onClose - when user click Done Button
+onCancel when picker blured
+onStop - when wheels stoped roteting
+inProgress - contantly calling during wheels rotating
+
+paramenters of callback:
+0.pointer to element;
+1.result timestamp in miliseconds
+2.result according to ResultType option value (date - date string, time - date-time string, object - separeted values for FullYear,Month,Day,Hours,Minutes,Seconds) 
+
+
 [Example](http://rawgit.com/dmitrigur/Date-Time-Picker-Relational-Slider-/master/example.html)
 
 	<p>Date Time (Result type: 'time')<input id="a1"></p>
