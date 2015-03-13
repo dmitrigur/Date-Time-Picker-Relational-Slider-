@@ -8,7 +8,10 @@ Functionality:
 
 Possible callback functions:
 
-onClose - when user click Done Button onCancel when picker blured onStop - when wheels stoped roteting inProgress - contantly calling during wheels rotating
+onClose - when user clicks Done Button 
+onCancel when picker blured 
+onStop - when wheels stoped roteting 
+inProgress - contantly calling during wheels rotating
 
 paramenters of callback: 
 0.pointer to element; 
