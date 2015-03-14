@@ -15,11 +15,11 @@ Possible callback functions:
 
 onClose - when user clicks Done Button
 
-onCancel when picker blurred 
+onCancel - when picker blurred 
 
 onStop - when wheels stopped rotating 
 
-inProgress - constantly calling during wheels rotating
+inProgress - constantly calling while wheels are rotating
 
 parameters of callback: 
 
