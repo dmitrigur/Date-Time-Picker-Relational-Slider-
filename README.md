@@ -3,7 +3,8 @@ The idea is an inter-related wheels mechanism. Clock like. For example, when rol
 
 Functionality: 
 
-1.Dragging wheels resulting fine adjusting/n
+1.Dragging wheels resulting fine adjusting
+
 2.Clicking on desired value outside the bar resulting shifting current timestamp to clicked value, lower values are intacted. 
 3.Clicking on bar trancating current timestamp to clicked value
 
