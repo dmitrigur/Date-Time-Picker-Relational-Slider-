@@ -1,33 +1,34 @@
 <h2>Date Time Picker - JQuery plug-in</h2>
-The idea is an inter-related wheels mechanism. Clock like. For example, when rolling upper wheel "Year", lower wheels "Month,Days" also rotating dependently. This helps in positioning lower values by rolling uppers, if not exact to, but definately close to desired position, making time adjusting much quicker. Espesially usefull for mobile interfaces, where date-time adjusting rollers are commonly used.
+The idea is an inter-related wheels mechanism. Clock like. For example, when rolling upper wheel "Year", lower wheels "Month, Days" also rotating dependently. This helps in positioning lower values by rolling uppers, if not exact to, but definitely close to desired position, making time adjusting much quicker. Especially useful for mobile interfaces, where date-time adjusting rollers are commonly used.
 
 Functionality: 
 
 1.Dragging wheels resulting fine adjusting
 
-2.Clicking on desired value outside the bar resulting shifting current timestamp to clicked value, lower values are intacted. 
+2.Clicking on desired value outside the bar resulting shifting current timestamp to clicked value, lower values are intact. 
 
-3.Clicking on bar trancating current timestamp to clicked value
+3.Clicking on bar truncating current timestamp to clicked value
 
-4.On mousewheel event resulting shifting current timestamp by fixed interval (years: by 5; monthes: by 3; days: by 7; hours: by 3; minutes: by 5; seconds: by 5)
+4.On mousewheel event resulting shifting current timestamp by fixed interval (years: by 5; months: by 3; days: by 7; hours: by 3; minutes: by 5; seconds: by 5)
 
 Possible callback functions:
 
 onClose - when user clicks Done Button
 
-onCancel when picker blured 
+onCancel when picker blurred 
 
-onStop - when wheels stoped roteting 
+onStop - when wheels stopped rotating 
 
-inProgress - contantly calling during wheels rotating
+inProgress - constantly calling during wheels rotating
 
-paramenters of callback: 
+parameters of callback: 
 
 0.pointer to element; 
 
-1.result Unix timestamp in millisec;
+1.result Unix timestamp in millisecond;
 
-2.result according to ResultType option value (date - date string, time - date-time string, object - separeted values for FullYear,Month,Date,Hours,Minutes,Seconds)
+2.result according to “ResultType” option value (date - date string, time - date-time string, object - separated values for FullYear, Month, Date, Hours, Minutes, Seconds)
+
 
 <h2> 
 [Example](http://rawgit.com/dmitrigur/Date-Time-Picker-Relational-Slider-/master/example.html)
