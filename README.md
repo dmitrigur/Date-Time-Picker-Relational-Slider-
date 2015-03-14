@@ -9,7 +9,7 @@ Functionality:
 
 3.Clicking on bar trancating current timestamp to clicked value
 
-4.On mousewheel event resulting shifting current stimestamp by fixed interval (years: 5, monthes: by 3 days: by 7, hours: by 3, minutes: by 5 seconds: by 5)
+4.On mousewheel event resulting shifting current timestamp by fixed interval (years: 5, monthes: by 3 days: by 7, hours: by 3, minutes: by 5 seconds: by 5)
 
 Possible callback functions:
 
