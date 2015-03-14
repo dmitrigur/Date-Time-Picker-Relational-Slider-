@@ -35,8 +35,8 @@ parameters of callback:
 </h2>
 
 	<p>Date Time (Result type: 'time')<input id="a1"></p>
-	<p>Date (Result type: 'date', Field is changing on Stop & in Progress)<input id="a2"></p>
-	<p>Date (Result type: 'object', Field is changing on Stop & on Blur)
+	<p>Date (Result type: 'date', Input is changing on Stop & in Progress)<input id="a2"></p>
+	<p>Date (Result type: 'object', Inputs is changing on Stop & on Blur)
 		<a>Y:<input id="a3y"></a>
 		<a>M:<input id="a3m"></a>
 		<a>D:<input id="a3d"></a>
