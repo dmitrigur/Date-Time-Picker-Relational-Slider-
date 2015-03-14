@@ -17,11 +17,12 @@ onStop - when wheels stoped roteting
 inProgress - contantly calling during wheels rotating
 
 paramenters of callback: 
+
 0.pointer to element; 
 
-1.result timestamp in miliseconds;
+1.result Unix timestamp in millisec;
 
-2.result according to ResultType option value (date - date string, time - date-time string, object - separeted values for FullYear,Month,Day,Hours,Minutes,Seconds)
+2.result according to ResultType option value (date - date string, time - date-time string, object - separeted values for FullYear,Month,Date,Hours,Minutes,Seconds)
 
 <h2> 
 [Example](http://rawgit.com/dmitrigur/Date-Time-Picker-Relational-Slider-/master/example.html)
