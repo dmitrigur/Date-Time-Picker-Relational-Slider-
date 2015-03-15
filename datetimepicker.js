@@ -681,8 +681,8 @@
 					if (targethdtoptions[hdtdata.targetID].TruncateResult)
 						hdtdata.iniTS=hdtpicker_datetruncateTS(hdtdata.iniTS,targethdtoptions[hdtdata.targetID].LevelSet.length-1);
 					switch (targethdtoptions[hdtdata.targetID].ResultMode) {
-						case "time" :{var result=new Date(hdtdata.iniTS);result=result.toLocaleString();$(hdtdata.target).val(result);break;}
-						case "date" :{var result=new Date(hdtdata.iniTS);result=result.toLocaleDateString();$(hdtdata.target).val(result);break;}
+						case "time" :{var result=new Date(hdtdata.iniTS).toLocaleString();$(hdtdata.target).val(result);break;}
+						case "date" :{var result=new Date(hdtdata.iniTS).toLocaleDateString();$(hdtdata.target).val(result);break;}
 						case "object" : {
 											var date=new Date(hdtdata.iniTS),result={};
 											for (var level in targethdtoptions[hdtdata.targetID].LevelSet)
@@ -690,6 +690,7 @@
 											break;
 										}
 					};
+					$(hdtdata.target).attr('ts',hdtdata.iniTS);
 					if (typeof (targethdtoptions[hdtdata.targetID].onBlur)=='function')
 						targethdtoptions[hdtdata.targetID].onBlur(hdtdata.target,hdtdata.iniTS,result);
 					else if (typeof (targethdtoptions[hdtdata.targetID].onClose)=='function')
