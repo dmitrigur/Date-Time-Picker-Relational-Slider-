@@ -230,6 +230,20 @@
 						$('.hdtpicker_mark').css("opacity",0.3);
 						$("#hdtpicker_bar,.hdtpicker_column_bar").css({display:"block"});
 						$("#hdtpicker_bar,.hdtpicker_column_bar").stop().animate({opacity:1},400);
+						if (horecaTechDateTimePicker.tarOpt[horecaTechDateTimePicker.data.targetID].FlagOnStop) {
+							switch (horecaTechDateTimePicker.tarOpt[horecaTechDateTimePicker.data.targetID].ResultMode) {
+								case "time" :{var result=new Date(horecaTechDateTimePicker.data.iniTS);result=result.toLocaleString();$(horecaTechDateTimePicker.data.target).val(result);break;}
+								case "date" :{var result=new Date(horecaTechDateTimePicker.data.iniTS);result=result.toLocaleDateString();$(horecaTechDateTimePicker.data.target).val(result);break;}
+								case "object" : {
+													var date=new Date(horecaTechDateTimePicker.data.iniTS),result={};
+													for (var level in horecaTechDateTimePicker.tarOpt[horecaTechDateTimePicker.data.targetID].LevelSet)
+														result[horecaTechDateTimePicker.tarOpt[horecaTechDateTimePicker.data.targetID].LevelSet[level]]=date['get'+horecaTechDateTimePicker.tarOpt[horecaTechDateTimePicker.data.targetID].LevelSet[level]]();
+													break;
+												}
+							};
+							if (typeof (horecaTechDateTimePicker.tarOpt[horecaTechDateTimePicker.data.targetID].onStop)=='function')
+								horecaTechDateTimePicker.tarOpt[horecaTechDateTimePicker.data.targetID].onStop(horecaTechDateTimePicker.data.target,horecaTechDateTimePicker.data.iniTS,result);
+						}
 						if (horecaTechDateTimePicker.data.stopwatch) {
 							$("#now_button").html("<center>СТОП</center>");
 							horecaTechDateTimePicker.data.iniTS=new Date().getTime()+horecaTechDateTimePicker.data.NowShift;
