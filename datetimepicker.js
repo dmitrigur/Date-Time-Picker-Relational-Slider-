@@ -245,7 +245,7 @@
 								horecaTechDateTimePicker.tarOpt[horecaTechDateTimePicker.data.targetID].onStop(horecaTechDateTimePicker.data.target,horecaTechDateTimePicker.data.iniTS,result);
 						}
 						if (horecaTechDateTimePicker.data.stopwatch) {
-							$("#now_button").html("<center>СТОП</center>");
+							$("#now_button").html("<center>"+horecaTechDateTimePicker.tarOpt[horecaTechDateTimePicker.data.targetID].STOP+"</center>");
 							horecaTechDateTimePicker.data.iniTS=new Date().getTime()+horecaTechDateTimePicker.data.NowShift;
 							horecaTechDateTimePicker.data.SecTS=horecaTechDateTimePicker.data.iniTS;
 							for (var level in horecaTechDateTimePicker.tarOpt[horecaTechDateTimePicker.data.targetID].LevelSet) {
