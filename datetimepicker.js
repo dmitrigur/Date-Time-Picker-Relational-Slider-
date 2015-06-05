@@ -262,7 +262,7 @@
 		hdtpicker_Timer =(function() {
 			var t=[],timercnt=0;
 			return {
-				Resume: function(c) { // возобновляет исполнение, по возможности в придыдущий график
+				Resume: function(c) { // РІРѕР·РѕР±РЅРѕРІР»СЏРµС‚ РёСЃРїРѕР»РЅРµРЅРёРµ, РїРѕ РІРѕР·РјРѕР¶РЅРѕСЃС‚Рё РІ РїСЂРёРґС‹РґСѓС‰РёР№ РіСЂР°С„РёРє
 					if (typeof(c)=='number' && t[c]!=null) {
 						if (!t[c].active) {
 							t[c].active=true;
@@ -273,13 +273,13 @@
 						return c
 					}
 				},
-				Stop : function (c) { // замораживает выполнение
+				Stop : function (c) { // Р·Р°РјРѕСЂР°Р¶РёРІР°РµС‚ РІС‹РїРѕР»РЅРµРЅРёРµ
 					if (typeof(c)=='number' && t[c]!=null) {
 						t[c].active=false
 						clearTimeout(t[c].timer);
 					}
 				},
-				Start : function() { // возобновляет исполнение или создает новый график
+				Start : function() { // РІРѕР·РѕР±РЅРѕРІР»СЏРµС‚ РёСЃРїРѕР»РЅРµРЅРёРµ РёР»Рё СЃРѕР·РґР°РµС‚ РЅРѕРІС‹Р№ РіСЂР°С„РёРє
 					if (!hdtpicker_Timer.Resume(arguments[0]) && (arguments[1]=='I' || arguments[1]=='D')) {
 						var c=timercnt++,
 							timestamp=new Date().getTime();
@@ -303,7 +303,7 @@
 						}
 					}
 				},
-				Abort : function (c) { //удаляет график исполнения 
+				Abort : function (c) { //СѓРґР°Р»СЏРµС‚ РіСЂР°С„РёРє РёСЃРїРѕР»РЅРµРЅРёСЏ 
 					if (typeof(c)=='number' && t[c]!=null) {
 						clearTimeout(t[c].timer);
 						delete t[c];
@@ -424,6 +424,17 @@
 					}
 				}
 		};
+                hdtremoveAll = function() {
+                                $(".hdtpicker_column_holder").off("touchstart.hdtdatetime");
+                                $(".hdtpicker_column_holder").off("mousedown.hdtdatetime");
+                                $(".hdtpicker_column_holder,.hdtpicker_column_bar_button").off("mousewheel.hdtdatetime");
+                                $("#hdtpicker_now_button").off("touchstart.hdtdatetime mousedown.hdtdatetime");
+                                $("#hdtpicker_done_button").off("touchstart.hdtdatetime mousedown.hdtdatetime");
+                                $("#hdtpicker_frame").off("mousedown.hdtdatetime touchstart.hdtdatetime keydown.hdtdatetime");
+                                $("#hdtpicker_frame").remove();
+				$(document).off("mousedown.hdtdatetime touchstart.hdtdatetime keydown.hdtdatetime scroll.hdtdatetime touchmove.hdtdatetime mousemove.hdtdatetime touchend.hdtdatetime mouseup.hdtdatetime");
+                                hdtpicker_Timer.Abort(horecaTechDateTimePicker.data.nowTimer);
+                }
 	$.fn.HorecaTechDateTimePickerIni4HorecaTech = function() {
 		label_prop("4",function() {
 			horecaTechDateTimePicker.opt.DONE=label_object["4"].label["1"].name.replace(/"/g, '&quot')
@@ -434,7 +445,7 @@
 	};
 	$.fn.HorecaTechDateTimePicker = function(opt) {
 		if ($(this).attr("pickerid")==null) {
-			$(this).attr("pickerid",horecaTechDateTimePicker.counter++);
+			this.attr("pickerid",horecaTechDateTimePicker.counter++);
 		};
 		var targetID=$(this).attr("pickerid");
 		var opt_=$.extend(true,{},horecaTechDateTimePicker.opt);
@@ -473,49 +484,50 @@
 			horecaTechDateTimePicker.data.widthMark={};
 			horecaTechDateTimePicker.data.Cur={};
 			horecaTechDateTimePicker.data.scrollHistory={};
-			horecaTechDateTimePicker.data.lineHeight=Math.round(horecaTechDateTimePicker.tarOpt[horecaTechDateTimePicker.data.targetID].SizeFactor*2)*2;
-			horecaTechDateTimePicker.data.windowHeight=Math.round(horecaTechDateTimePicker.tarOpt[horecaTechDateTimePicker.data.targetID].SizeFactor*horecaTechDateTimePicker.tarOpt[horecaTechDateTimePicker.data.targetID].WindowHeightFactor/2)*2;
-			horecaTechDateTimePicker.data.marginSize=Math.round(horecaTechDateTimePicker.tarOpt[horecaTechDateTimePicker.data.targetID].SizeFactor*0.75);
-			horecaTechDateTimePicker.data.mainFontSize=Math.round(horecaTechDateTimePicker.tarOpt[horecaTechDateTimePicker.data.targetID].SizeFactor*3);
-			horecaTechDateTimePicker.data.buttonFontSize=Math.round(horecaTechDateTimePicker.tarOpt[horecaTechDateTimePicker.data.targetID].SizeFactor*2.5);
+                        tarOpt=horecaTechDateTimePicker.tarOpt[horecaTechDateTimePicker.data.targetID];
+			horecaTechDateTimePicker.data.lineHeight=Math.round(tarOpt.SizeFactor*2)*2;
+			horecaTechDateTimePicker.data.windowHeight=Math.round(tarOpt.SizeFactor*tarOpt.WindowHeightFactor/2)*2;
+			horecaTechDateTimePicker.data.marginSize=Math.round(tarOpt.SizeFactor*0.75);
+			horecaTechDateTimePicker.data.mainFontSize=Math.round(tarOpt.SizeFactor*3);
+			horecaTechDateTimePicker.data.buttonFontSize=Math.round(tarOpt.SizeFactor*2.5);
 			horecaTechDateTimePicker.data.separatorWidth=Math.ceil(horecaTechDateTimePicker.data.mainFontSize/4);
-			horecaTechDateTimePicker.data.frameBorderWidth=(horecaTechDateTimePicker.tarOpt[horecaTechDateTimePicker.data.targetID].FrameBorderWidth==null)?Math.round(horecaTechDateTimePicker.tarOpt[horecaTechDateTimePicker.data.targetID].SizeFactor/4):horecaTechDateTimePicker.tarOpt[horecaTechDateTimePicker.data.targetID].borderWidth;
-			horecaTechDateTimePicker.data.frameBorderColor=(horecaTechDateTimePicker.tarOpt[horecaTechDateTimePicker.data.targetID].FrameBorderColor==null)?horecaTechDateTimePicker.tarOpt[horecaTechDateTimePicker.data.targetID].TextColor:horecaTechDateTimePicker.tarOpt[horecaTechDateTimePicker.data.targetID].FrameBorderColor;
-			horecaTechDateTimePicker.data.frameShadowColor=(horecaTechDateTimePicker.tarOpt[horecaTechDateTimePicker.data.targetID].FrameShadowColor==null)?"black":horecaTechDateTimePicker.tarOpt[horecaTechDateTimePicker.data.targetID].FrameShadowColor;
-			horecaTechDateTimePicker.data.frameShadowOffsetX=(horecaTechDateTimePicker.tarOpt[horecaTechDateTimePicker.data.targetID].FrameShadowOffsetX==null)?Math.round(horecaTechDateTimePicker.tarOpt[horecaTechDateTimePicker.data.targetID].SizeFactor/4):horecaTechDateTimePicker.tarOpt[horecaTechDateTimePicker.data.targetID].FrameShadowOffsetX;
-			horecaTechDateTimePicker.data.frameShadowOffsetY=(horecaTechDateTimePicker.tarOpt[horecaTechDateTimePicker.data.targetID].FrameShadowOffsetY==null)?Math.round(horecaTechDateTimePicker.tarOpt[horecaTechDateTimePicker.data.targetID].SizeFactor/4):horecaTechDateTimePicker.tarOpt[horecaTechDateTimePicker.data.targetID].FrameShadowOffsetY;
-			horecaTechDateTimePicker.data.frameShadowRadius=(horecaTechDateTimePicker.tarOpt[horecaTechDateTimePicker.data.targetID].FrameShadowRaduis==null)?Math.round(horecaTechDateTimePicker.tarOpt[horecaTechDateTimePicker.data.targetID].SizeFactor/1.5):horecaTechDateTimePicker.tarOpt[horecaTechDateTimePicker.data.targetID].FrameShadowRadius;
-			horecaTechDateTimePicker.data.barShadowOffset=Math.round(horecaTechDateTimePicker.tarOpt[horecaTechDateTimePicker.data.targetID].SizeFactor/4);
-			horecaTechDateTimePicker.data.barShadowRadius=Math.round(horecaTechDateTimePicker.tarOpt[horecaTechDateTimePicker.data.targetID].SizeFactor/2);
-			horecaTechDateTimePicker.data.textFontFamily=(horecaTechDateTimePicker.tarOpt[horecaTechDateTimePicker.data.targetID].TextFontFamily==null)?$('body').css('font-family'):horecaTechDateTimePicker.tarOpt[horecaTechDateTimePicker.data.targetID].TextFontFamily;
-			horecaTechDateTimePicker.data.selectedTextFontFamily=(horecaTechDateTimePicker.tarOpt[horecaTechDateTimePicker.data.targetID].SelectedTextFontFamily==null)?horecaTechDateTimePicker.data.textFontFamily:horecaTechDateTimePicker.tarOpt[horecaTechDateTimePicker.data.targetID].SelectedTextFontFamily;
+			horecaTechDateTimePicker.data.frameBorderWidth=(tarOpt.FrameBorderWidth==null)?Math.round(tarOpt.SizeFactor/4):tarOpt.borderWidth;
+			horecaTechDateTimePicker.data.frameBorderColor=(tarOpt.FrameBorderColor==null)?tarOpt.TextColor:tarOpt.FrameBorderColor;
+			horecaTechDateTimePicker.data.frameShadowColor=(tarOpt.FrameShadowColor==null)?"black":tarOpt.FrameShadowColor;
+			horecaTechDateTimePicker.data.frameShadowOffsetX=(tarOpt.FrameShadowOffsetX==null)?Math.round(tarOpt.SizeFactor/4):tarOpt.FrameShadowOffsetX;
+			horecaTechDateTimePicker.data.frameShadowOffsetY=(tarOpt.FrameShadowOffsetY==null)?Math.round(tarOpt.SizeFactor/4):tarOpt.FrameShadowOffsetY;
+			horecaTechDateTimePicker.data.frameShadowRadius=(tarOpt.FrameShadowRaduis==null)?Math.round(tarOpt.SizeFactor/1.5):tarOpt.FrameShadowRadius;
+			horecaTechDateTimePicker.data.barShadowOffset=Math.round(tarOpt.SizeFactor/4);
+			horecaTechDateTimePicker.data.barShadowRadius=Math.round(tarOpt.SizeFactor/2);
+			horecaTechDateTimePicker.data.textFontFamily=(tarOpt.TextFontFamily==null)?$('body').css('font-family'):tarOpt.TextFontFamily;
+			horecaTechDateTimePicker.data.selectedTextFontFamily=(tarOpt.SelectedTextFontFamily==null)?horecaTechDateTimePicker.data.textFontFamily:tarOpt.SelectedTextFontFamily;
 			horecaTechDateTimePicker.data.selectedFontWeight=(horecaTechDateTimePicker.data.textFontFamily==horecaTechDateTimePicker.data.selectedTextFontFamily)?"bold":"normal";
-			horecaTechDateTimePicker.data.Container=(horecaTechDateTimePicker.tarOpt[horecaTechDateTimePicker.data.targetID].Container=='body')?'body':'#'+horecaTechDateTimePicker.tarOpt[horecaTechDateTimePicker.data.targetID].Container;
+			horecaTechDateTimePicker.data.Container=(tarOpt.Container=='body')?'body':'#'+tarOpt.Container;
 			horecaTechDateTimePicker.data.windowOffset=0;
-			var acc=0,str="";
+                        var acc=0,str="";
 			$("#hdtpicker_frame").remove();
-			$(horecaTechDateTimePicker.data.Container).append('<div id="hdtpicker_frame" class="hdtpicker_frame"><div id="hdtpicker_button_panel" class="hdtpicker_button_panel"><span id="hdtpicker_now_button" class="hdtpicker_buttons" ></span><span id="hdtpicker_done_button" class="hdtpicker_buttons"><center>'+horecaTechDateTimePicker.tarOpt[horecaTechDateTimePicker.data.targetID].DONE+'</center></span></div><div id="hdtpicker_holder" class="hdtpicker_holder"><div id="hdtpicker_bar" class="hdtpicker_bar"></div></div></div>');
-			for (var level in horecaTechDateTimePicker.tarOpt[horecaTechDateTimePicker.data.targetID].LevelSet) {
-				horecaTechDateTimePicker.data.windowOffset=Math.max(horecaTechDateTimePicker.data.windowOffset,Math.round(horecaTechDateTimePicker.tarOpt[horecaTechDateTimePicker.data.targetID].HeightFactor__[horecaTechDateTimePicker.tarOpt[horecaTechDateTimePicker.data.targetID].LevelSet[level]]/horecaTechDateTimePicker.tarOpt[horecaTechDateTimePicker.data.targetID].HeightFactor[horecaTechDateTimePicker.tarOpt[horecaTechDateTimePicker.data.targetID].LevelSet[level]]*1.2)*2);
-				horecaTechDateTimePicker.data.widthMark[level]={left:acc+horecaTechDateTimePicker.tarOpt[horecaTechDateTimePicker.data.targetID].ColumnMargin[horecaTechDateTimePicker.tarOpt[horecaTechDateTimePicker.data.targetID].LevelSet[level]],left_middle:acc+horecaTechDateTimePicker.tarOpt[horecaTechDateTimePicker.data.targetID].ColumnMargin[horecaTechDateTimePicker.tarOpt[horecaTechDateTimePicker.data.targetID].LevelSet[level]]+horecaTechDateTimePicker.tarOpt[horecaTechDateTimePicker.data.targetID].Width[horecaTechDateTimePicker.tarOpt[horecaTechDateTimePicker.data.targetID].LevelSet[level]]/10,middle:acc+horecaTechDateTimePicker.tarOpt[horecaTechDateTimePicker.data.targetID].ColumnMargin[horecaTechDateTimePicker.tarOpt[horecaTechDateTimePicker.data.targetID].LevelSet[level]]+horecaTechDateTimePicker.tarOpt[horecaTechDateTimePicker.data.targetID].Width[horecaTechDateTimePicker.tarOpt[horecaTechDateTimePicker.data.targetID].LevelSet[level]]/2,right_middle:acc+horecaTechDateTimePicker.tarOpt[horecaTechDateTimePicker.data.targetID].ColumnMargin[horecaTechDateTimePicker.tarOpt[horecaTechDateTimePicker.data.targetID].LevelSet[level]]+horecaTechDateTimePicker.tarOpt[horecaTechDateTimePicker.data.targetID].Width[horecaTechDateTimePicker.tarOpt[horecaTechDateTimePicker.data.targetID].LevelSet[level]]*9/10,right:acc+horecaTechDateTimePicker.tarOpt[horecaTechDateTimePicker.data.targetID].ColumnMargin[horecaTechDateTimePicker.tarOpt[horecaTechDateTimePicker.data.targetID].LevelSet[level]]+horecaTechDateTimePicker.tarOpt[horecaTechDateTimePicker.data.targetID].Width[horecaTechDateTimePicker.tarOpt[horecaTechDateTimePicker.data.targetID].LevelSet[level]]};
-				if (horecaTechDateTimePicker.tarOpt[horecaTechDateTimePicker.data.targetID].Separator[horecaTechDateTimePicker.tarOpt[horecaTechDateTimePicker.data.targetID].LevelSet[level]]!="")
-					$("#hdtpicker_bar").append("<span class=\"hdtpicker_separator\" style=\"WIDTH:"+horecaTechDateTimePicker.tarOpt[horecaTechDateTimePicker.data.targetID].SeparatorWidth[horecaTechDateTimePicker.tarOpt[horecaTechDateTimePicker.data.targetID].LevelSet[level]]+"px;LEFT:"+(acc-(horecaTechDateTimePicker.tarOpt[horecaTechDateTimePicker.data.targetID].SeparatorWidth[horecaTechDateTimePicker.tarOpt[horecaTechDateTimePicker.data.targetID].LevelSet[level]]-horecaTechDateTimePicker.tarOpt[horecaTechDateTimePicker.data.targetID].ColumnMargin[horecaTechDateTimePicker.tarOpt[horecaTechDateTimePicker.data.targetID].LevelSet[level]])/2)+"px\">"+horecaTechDateTimePicker.tarOpt[horecaTechDateTimePicker.data.targetID].Separator[horecaTechDateTimePicker.tarOpt[horecaTechDateTimePicker.data.targetID].LevelSet[level]]+"</span>");
-				acc+=horecaTechDateTimePicker.tarOpt[horecaTechDateTimePicker.data.targetID].Width[horecaTechDateTimePicker.tarOpt[horecaTechDateTimePicker.data.targetID].LevelSet[level]]+horecaTechDateTimePicker.tarOpt[horecaTechDateTimePicker.data.targetID].ColumnMargin[horecaTechDateTimePicker.tarOpt[horecaTechDateTimePicker.data.targetID].LevelSet[level]];
-				horecaTechDateTimePicker.data.Cur[horecaTechDateTimePicker.tarOpt[horecaTechDateTimePicker.data.targetID].LevelSet[level]]=horecaTechDateTimePicker.data.Prev[horecaTechDateTimePicker.tarOpt[horecaTechDateTimePicker.data.targetID].LevelSet[level]]=horecaTechDateTimePicker.data.Next[horecaTechDateTimePicker.tarOpt[horecaTechDateTimePicker.data.targetID].LevelSet[level]]={};
-				horecaTechDateTimePicker.data.ScrollTop[horecaTechDateTimePicker.tarOpt[horecaTechDateTimePicker.data.targetID].LevelSet[level]]=horecaTechDateTimePicker.data.RollerTS[horecaTechDateTimePicker.tarOpt[horecaTechDateTimePicker.data.targetID].LevelSet[level]]=0;
-				$("#hdtpicker_holder").append("<div level=\""+horecaTechDateTimePicker.tarOpt[horecaTechDateTimePicker.data.targetID].LevelSet[level]+"\" id=\"hdtpicker_level_"+horecaTechDateTimePicker.tarOpt[horecaTechDateTimePicker.data.targetID].LevelSet[level]+"_holder\" class=\"hdtpicker_column_holder\" style=\"MARGIN-LEFT:"+horecaTechDateTimePicker.tarOpt[horecaTechDateTimePicker.data.targetID].ColumnMargin[horecaTechDateTimePicker.tarOpt[horecaTechDateTimePicker.data.targetID].LevelSet[level]]+"px;WIDTH:"+horecaTechDateTimePicker.tarOpt[horecaTechDateTimePicker.data.targetID].Width[horecaTechDateTimePicker.tarOpt[horecaTechDateTimePicker.data.targetID].LevelSet[level]]+"px\"><div id=\"hdtpicker_bar"+level+"\" class=\"hdtpicker_column_bar\"></div><div id=\"p"+level+"\" class=\"hdtpicker_mark\"></div></div>");
-				$("#hdtpicker_bar").append("<div level=\""+horecaTechDateTimePicker.tarOpt[horecaTechDateTimePicker.data.targetID].LevelSet[level]+"\" id=\"hdtpicker_bar_"+horecaTechDateTimePicker.tarOpt[horecaTechDateTimePicker.data.targetID].LevelSet[level]+"\" class=\"hdtpicker_column_bar_button\" style=\"MARGIN-LEFT:"+horecaTechDateTimePicker.tarOpt[horecaTechDateTimePicker.data.targetID].ColumnMargin[horecaTechDateTimePicker.tarOpt[horecaTechDateTimePicker.data.targetID].LevelSet[level]]+"px;WIDTH:"+horecaTechDateTimePicker.tarOpt[horecaTechDateTimePicker.data.targetID].Width[horecaTechDateTimePicker.tarOpt[horecaTechDateTimePicker.data.targetID].LevelSet[level]]+"px\"></div>");
+			$(horecaTechDateTimePicker.data.Container).append('<div id="hdtpicker_frame" class="hdtpicker_frame"><div id="hdtpicker_button_panel" class="hdtpicker_button_panel"><span id="hdtpicker_now_button" class="hdtpicker_buttons" ></span><span id="hdtpicker_done_button" class="hdtpicker_buttons"><center>'+tarOpt.DONE+'</center></span></div><div id="hdtpicker_holder" class="hdtpicker_holder"><div id="hdtpicker_bar" class="hdtpicker_bar"></div></div></div>');
+			for (var level in tarOpt.LevelSet) {
+				horecaTechDateTimePicker.data.windowOffset=Math.max(horecaTechDateTimePicker.data.windowOffset,Math.round(tarOpt.HeightFactor__[tarOpt.LevelSet[level]]/tarOpt.HeightFactor[tarOpt.LevelSet[level]]*1.2)*2);
+				horecaTechDateTimePicker.data.widthMark[level]={left:acc+tarOpt.ColumnMargin[tarOpt.LevelSet[level]],left_middle:acc+tarOpt.ColumnMargin[tarOpt.LevelSet[level]]+tarOpt.Width[tarOpt.LevelSet[level]]/10,middle:acc+tarOpt.ColumnMargin[tarOpt.LevelSet[level]]+tarOpt.Width[tarOpt.LevelSet[level]]/2,right_middle:acc+tarOpt.ColumnMargin[tarOpt.LevelSet[level]]+tarOpt.Width[tarOpt.LevelSet[level]]*9/10,right:acc+tarOpt.ColumnMargin[tarOpt.LevelSet[level]]+tarOpt.Width[tarOpt.LevelSet[level]]};
+				if (tarOpt.Separator[tarOpt.LevelSet[level]]!="")
+					$("#hdtpicker_bar").append("<span class=\"hdtpicker_separator\" style=\"WIDTH:"+tarOpt.SeparatorWidth[tarOpt.LevelSet[level]]+"px;LEFT:"+(acc-(tarOpt.SeparatorWidth[tarOpt.LevelSet[level]]-tarOpt.ColumnMargin[tarOpt.LevelSet[level]])/2)+"px\">"+tarOpt.Separator[tarOpt.LevelSet[level]]+"</span>");
+				acc+=tarOpt.Width[tarOpt.LevelSet[level]]+tarOpt.ColumnMargin[tarOpt.LevelSet[level]];
+				horecaTechDateTimePicker.data.Cur[tarOpt.LevelSet[level]]=horecaTechDateTimePicker.data.Prev[tarOpt.LevelSet[level]]=horecaTechDateTimePicker.data.Next[tarOpt.LevelSet[level]]={};
+				horecaTechDateTimePicker.data.ScrollTop[tarOpt.LevelSet[level]]=horecaTechDateTimePicker.data.RollerTS[tarOpt.LevelSet[level]]=0;
+				$("#hdtpicker_holder").append("<div level=\""+tarOpt.LevelSet[level]+"\" id=\"hdtpicker_level_"+tarOpt.LevelSet[level]+"_holder\" class=\"hdtpicker_column_holder\" style=\"MARGIN-LEFT:"+tarOpt.ColumnMargin[tarOpt.LevelSet[level]]+"px;WIDTH:"+tarOpt.Width[tarOpt.LevelSet[level]]+"px\"><div id=\"hdtpicker_bar"+level+"\" class=\"hdtpicker_column_bar\"></div><div id=\"p"+level+"\" class=\"hdtpicker_mark\"></div></div>");
+				$("#hdtpicker_bar").append("<div level=\""+tarOpt.LevelSet[level]+"\" id=\"hdtpicker_bar_"+tarOpt.LevelSet[level]+"\" class=\"hdtpicker_column_bar_button\" style=\"MARGIN-LEFT:"+tarOpt.ColumnMargin[tarOpt.LevelSet[level]]+"px;WIDTH:"+tarOpt.Width[tarOpt.LevelSet[level]]+"px\"></div>");
 			};
-			for (var level in horecaTechDateTimePicker.tarOpt[horecaTechDateTimePicker.data.targetID].LevelSet) {
-				str+=","+horecaTechDateTimePicker.tarOpt[horecaTechDateTimePicker.data.targetID].SelectedBarBackgroundColor+"1)"+(horecaTechDateTimePicker.data.widthMark[level].left/acc*100)+"%,"+horecaTechDateTimePicker.tarOpt[horecaTechDateTimePicker.data.targetID].SelectedBarBackgroundColor+"0.1)"+(horecaTechDateTimePicker.data.widthMark[level].left_middle/acc*100)+"%,"+horecaTechDateTimePicker.tarOpt[horecaTechDateTimePicker.data.targetID].SelectedBarBackgroundColor+"0)"+(horecaTechDateTimePicker.data.widthMark[level].middle/acc*100)+"%,"+horecaTechDateTimePicker.tarOpt[horecaTechDateTimePicker.data.targetID].SelectedBarBackgroundColor+"0.1)"+(horecaTechDateTimePicker.data.widthMark[level].right_middle/acc*100)+"%,"+horecaTechDateTimePicker.tarOpt[horecaTechDateTimePicker.data.targetID].SelectedBarBackgroundColor+"1)"+(horecaTechDateTimePicker.data.widthMark[level].right/acc*100)+"%";
+			for (var level in tarOpt.LevelSet) {
+				str+=","+tarOpt.SelectedBarBackgroundColor+"1)"+(horecaTechDateTimePicker.data.widthMark[level].left/acc*100)+"%,"+tarOpt.SelectedBarBackgroundColor+"0.1)"+(horecaTechDateTimePicker.data.widthMark[level].left_middle/acc*100)+"%,"+tarOpt.SelectedBarBackgroundColor+"0)"+(horecaTechDateTimePicker.data.widthMark[level].middle/acc*100)+"%,"+tarOpt.SelectedBarBackgroundColor+"0.1)"+(horecaTechDateTimePicker.data.widthMark[level].right_middle/acc*100)+"%,"+tarOpt.SelectedBarBackgroundColor+"1)"+(horecaTechDateTimePicker.data.widthMark[level].right/acc*100)+"%";
 			};
-			$("#hdtpicker_frame").append("<style>.hdtpicker_holder {		margin: "+horecaTechDateTimePicker.data.marginSize+"px;		font-size:"+horecaTechDateTimePicker.data.mainFontSize+"px;		width:auto;		overflow:hidden;		height:"+horecaTechDateTimePicker.data.windowHeight+"px;		position:relative;		display:block;	}	.hdtpicker_column_holder {		overflow:hidden;		height:"+(horecaTechDateTimePicker.data.windowHeight+horecaTechDateTimePicker.data.windowOffset*2)+"px;		top: -"+horecaTechDateTimePicker.data.windowOffset+"px;		display:inline-block;		position: relative;		background-image : "+horecaTechDateTimePicker.tarOpt[horecaTechDateTimePicker.data.targetID].ColumnBackgroundImage+";	}	.hdtpicker_container {		width:100%;		position: absolute;		left:0px;	}	.hdtpicker_cell {		width:100%;		text-align:center;		vertical-align:baseline;		display:block;		background-image : "+horecaTechDateTimePicker.tarOpt[horecaTechDateTimePicker.data.targetID].CellBackgroundImage+";		cursor:arrow;	}	.hdtpicker_mark {		height:2px;		width:100%;		position:absolute;		top:"+(horecaTechDateTimePicker.data.windowHeight/2+horecaTechDateTimePicker.data.windowOffset-1)+"px;		background-color:"+horecaTechDateTimePicker.tarOpt[horecaTechDateTimePicker.data.targetID].MarkColor+";		opacity:0.3;	}	.hdtpicker_bar {		height:"+horecaTechDateTimePicker.data.lineHeight+"px;		top:"+(horecaTechDateTimePicker.data.windowHeight/2-horecaTechDateTimePicker.data.lineHeight/2)+"px;		position: absolute;		opacity:0;		z-index:1;		box-shadow: 0px "+horecaTechDateTimePicker.data.barShadowOffset+"px "+horecaTechDateTimePicker.data.barShadowRadius+"px "+horecaTechDateTimePicker.data.frameShadowColor+";		border-left:none;border-right:none;border-bottom: 1px solid "+horecaTechDateTimePicker.data.frameBorderColor+";border-top: 1px solid "+horecaTechDateTimePicker.data.frameBorderColor+";		margin-top:-1;		margin-left:-1;	}	.hdtpicker_column_bar {		opacity:0;		background-color:"+horecaTechDateTimePicker.tarOpt[horecaTechDateTimePicker.data.targetID].SelectedBarBackgroundColor+"1);		height:"+horecaTechDateTimePicker.data.lineHeight+"px;		width:100%;		position: absolute;		cursor:arrow;	}	.hdtpicker_column_bar_button {		height:100%;		background-color:tranparent;		position:relative;		display:inline-block;	}	.hdtpicker_button_panel {		background-image : "+horecaTechDateTimePicker.tarOpt[horecaTechDateTimePicker.data.targetID].ButtonBackgroundImage+";		margin: "+horecaTechDateTimePicker.data.marginSize+"px;		height:"+horecaTechDateTimePicker.data.lineHeight+"px;		width:100%;		position: relative;		display: block;	}	.hdtpicker_buttons {		width: 50%;		margin: auto;		color: "+horecaTechDateTimePicker.tarOpt[horecaTechDateTimePicker.data.targetID].SelectedTextColor+";		font-size: "+horecaTechDateTimePicker.data.buttonFontSize+"px;		line-height:"+horecaTechDateTimePicker.data.lineHeight+"px;		position: relative;		display: inline-block;		cursor:arrow;	}	.hdtpicker_frame{		"+((horecaTechDateTimePicker.tarOpt[horecaTechDateTimePicker.data.targetID].FrameBackgroundImage==null)?("background-color: "+horecaTechDateTimePicker.tarOpt[horecaTechDateTimePicker.data.targetID].FrameBackgroundColor):("background-image : "+horecaTechDateTimePicker.tarOpt[horecaTechDateTimePicker.data.targetID].FrameBackgroundImage))+";		padding:1px;		display:block;		position:fixed;		z-index:20;		box-shadow: "+horecaTechDateTimePicker.data.frameShadowOffsetX+"px "+horecaTechDateTimePicker.data.frameShadowOffsetY+"px "+horecaTechDateTimePicker.data.frameShadowRadius+"px "+horecaTechDateTimePicker.data.frameShadowColor+";		-webkit-touch-callout: none;		-webkit-user-select: none;		-khtml-user-select: none;		-moz-user-select: none;		-ms-user-select: none;		user-select: none;		font-family: "+horecaTechDateTimePicker.data.selectedTextFontFamily+";		font-size: "+horecaTechDateTimePicker.data.mainFontSize+"px;		opacity:0;		border: "+horecaTechDateTimePicker.data.frameBorderWidth+"px outset "+horecaTechDateTimePicker.data.frameBorderColor+";	}	.hdtpicker_separator {		width:"+horecaTechDateTimePicker.data.separatorWidth+"px;		display:block;		position:absolute;		font-weight:"+horecaTechDateTimePicker.data.selectedFontWeight+";		color: "+horecaTechDateTimePicker.tarOpt[horecaTechDateTimePicker.data.targetID].SelectedTextColor+";		line-height:"+horecaTechDateTimePicker.data.lineHeight+"px;		top:0px;	}</style>");
+			$("#hdtpicker_frame").append("<style>.hdtpicker_holder {		margin: "+horecaTechDateTimePicker.data.marginSize+"px;		font-size:"+horecaTechDateTimePicker.data.mainFontSize+"px;		width:auto;		overflow:hidden;		height:"+horecaTechDateTimePicker.data.windowHeight+"px;		position:relative;		display:block;	}	.hdtpicker_column_holder {		overflow:hidden;		height:"+(horecaTechDateTimePicker.data.windowHeight+horecaTechDateTimePicker.data.windowOffset*2)+"px;		top: -"+horecaTechDateTimePicker.data.windowOffset+"px;		display:inline-block;		position: relative;		background-image : "+tarOpt.ColumnBackgroundImage+";	}	.hdtpicker_container {		width:100%;		position: absolute;		left:0px;	}	.hdtpicker_cell {		width:100%;		text-align:center;		vertical-align:baseline;		display:block;		background-image : "+tarOpt.CellBackgroundImage+";		cursor:arrow;	}	.hdtpicker_mark {		height:2px;		width:100%;		position:absolute;		top:"+(horecaTechDateTimePicker.data.windowHeight/2+horecaTechDateTimePicker.data.windowOffset-1)+"px;		background-color:"+tarOpt.MarkColor+";		opacity:0.3;	}	.hdtpicker_bar {		height:"+horecaTechDateTimePicker.data.lineHeight+"px;		top:"+(horecaTechDateTimePicker.data.windowHeight/2-horecaTechDateTimePicker.data.lineHeight/2)+"px;		position: absolute;		opacity:0;		z-index:1;		box-shadow: 0px "+horecaTechDateTimePicker.data.barShadowOffset+"px "+horecaTechDateTimePicker.data.barShadowRadius+"px "+horecaTechDateTimePicker.data.frameShadowColor+";		border-left:none;border-right:none;border-bottom: 1px solid "+horecaTechDateTimePicker.data.frameBorderColor+";border-top: 1px solid "+horecaTechDateTimePicker.data.frameBorderColor+";		margin-top:-1;		margin-left:-1;	}	.hdtpicker_column_bar {		opacity:0;		background-color:"+tarOpt.SelectedBarBackgroundColor+"1);		height:"+horecaTechDateTimePicker.data.lineHeight+"px;		width:100%;		position: absolute;		cursor:arrow;	}	.hdtpicker_column_bar_button {		height:100%;		background-color:tranparent;		position:relative;		display:inline-block;	}	.hdtpicker_button_panel {		background-image : "+tarOpt.ButtonBackgroundImage+";		margin: "+horecaTechDateTimePicker.data.marginSize+"px;		height:"+horecaTechDateTimePicker.data.lineHeight+"px;		width:100%;		position: relative;		display: block;	}	.hdtpicker_buttons {		width: 50%;		margin: auto;		color: "+tarOpt.SelectedTextColor+";		font-size: "+horecaTechDateTimePicker.data.buttonFontSize+"px;		line-height:"+horecaTechDateTimePicker.data.lineHeight+"px;		position: relative;		display: inline-block;		cursor:arrow;	}	.hdtpicker_frame{		"+((tarOpt.FrameBackgroundImage==null)?("background-color: "+tarOpt.FrameBackgroundColor):("background-image : "+tarOpt.FrameBackgroundImage))+";		padding:1px;		display:block;		position:fixed;		z-index:20;		box-shadow: "+horecaTechDateTimePicker.data.frameShadowOffsetX+"px "+horecaTechDateTimePicker.data.frameShadowOffsetY+"px "+horecaTechDateTimePicker.data.frameShadowRadius+"px "+horecaTechDateTimePicker.data.frameShadowColor+";		-webkit-touch-callout: none;		-webkit-user-select: none;		-khtml-user-select: none;		-moz-user-select: none;		-ms-user-select: none;		user-select: none;		font-family: "+horecaTechDateTimePicker.data.selectedTextFontFamily+";		font-size: "+horecaTechDateTimePicker.data.mainFontSize+"px;		opacity:0;		border: "+horecaTechDateTimePicker.data.frameBorderWidth+"px outset "+horecaTechDateTimePicker.data.frameBorderColor+";	}	.hdtpicker_separator {		width:"+horecaTechDateTimePicker.data.separatorWidth+"px;		display:block;		position:absolute;		font-weight:"+horecaTechDateTimePicker.data.selectedFontWeight+";		color: "+tarOpt.SelectedTextColor+";		line-height:"+horecaTechDateTimePicker.data.lineHeight+"px;		top:0px;	}</style>");
 			$("#hdtpicker_holder,#hdtpicker_button_panel").width(acc);
 			$("#hdtpicker_frame").width(acc+horecaTechDateTimePicker.data.marginSize*2);
 			$("#hdtpicker_bar").css({backgroundImage:"-webkit-linear-gradient(left"+str+")",width:acc});
 			$("#hdtpicker_bar,.hdtpicker_column_bar").css({display:"block"});
 			$("#hdtpicker_bar,.hdtpicker_column_bar").stop().animate({opacity:1},400);
-			$("#hdtpicker_level_"+horecaTechDateTimePicker.tarOpt[horecaTechDateTimePicker.data.targetID].LevelSet[horecaTechDateTimePicker.tarOpt[horecaTechDateTimePicker.data.targetID].LevelSet.length-1]+"_holder").stop().css({top:-horecaTechDateTimePicker.data.windowOffset-horecaTechDateTimePicker.tarOpt[horecaTechDateTimePicker.data.targetID].HeightFactor__[horecaTechDateTimePicker.tarOpt[horecaTechDateTimePicker.data.targetID].LevelSet[horecaTechDateTimePicker.tarOpt[horecaTechDateTimePicker.data.targetID].LevelSet.length-1]]/horecaTechDateTimePicker.tarOpt[horecaTechDateTimePicker.data.targetID].HeightFactor[horecaTechDateTimePicker.tarOpt[horecaTechDateTimePicker.data.targetID].LevelSet[horecaTechDateTimePicker.tarOpt[horecaTechDateTimePicker.data.targetID].LevelSet.length-1]]});	
+			$("#hdtpicker_level_"+tarOpt.LevelSet[tarOpt.LevelSet.length-1]+"_holder").stop().css({top:-horecaTechDateTimePicker.data.windowOffset-tarOpt.HeightFactor__[tarOpt.LevelSet[tarOpt.LevelSet.length-1]]/tarOpt.HeightFactor[tarOpt.LevelSet[tarOpt.LevelSet.length-1]]});	
 			$("#hdtpicker_frame").width(acc+horecaTechDateTimePicker.data.marginSize*2);
 			$("#hdtpicker_frame").animate({opacity:1},200);
 			var fr_height=$("#hdtpicker_frame").height(),
@@ -523,23 +535,21 @@
 				coord=horecaTechDateTimePicker.data.target.getBoundingClientRect(),
 				scr_height=$(window).height(),
 				scr_width=$(window).width();
-			if (scr_height-coord.bottom>=fr_height) {
+			if (scr_height-coord.bottom>=fr_height)
 				$("#hdtpicker_frame").css({top:coord.bottom})
-			} else if (coord.top>=fr_height) {
+			else if (coord.top>=fr_height)
 				$("#hdtpicker_frame").css({top:coord.top-fr_height})
-			} else {
-				$("#hdtpicker_frame").css({top:(scr_height-fr_height)/2})
-			};
-			if (scr_width-coord.left>=fr_width) {
+                        else
+				$("#hdtpicker_frame").css({top:(scr_height-fr_height)/2});
+			if (scr_width-coord.left>=fr_width)
 				$("#hdtpicker_frame").css({left:coord.left})
-			} else if (scr_width-coord.right>=fr_height) {
+                        else if (scr_width-coord.right>=fr_height)
 				$("#hdtpicker_frame").css({left:coord.right-fr_width})
-			} else {
-				$("#hdtpicker_frame").css({left:(scr_width-fr_width)/2})
-			};
+			else 
+				$("#hdtpicker_frame").css({left:(scr_width-fr_width)/2});
 			horecaTechDateTimePicker.data.stopwatch=false;
-			if (horecaTechDateTimePicker.tarOpt[horecaTechDateTimePicker.data.targetID].TS!==undefined)
-				horecaTechDateTimePicker.data.iniTS=horecaTechDateTimePicker.tarOpt[horecaTechDateTimePicker.data.targetID].TS;
+			if (tarOpt.TS!==undefined)
+				horecaTechDateTimePicker.data.iniTS=tarOpt.TS;
 			else if ($(horecaTechDateTimePicker.data.target).attr("ts")!="" && $(horecaTechDateTimePicker.data.target).attr("ts")!="0" && $(horecaTechDateTimePicker.data.target).attr("ts")!==undefined && $(horecaTechDateTimePicker.data.target).attr("ts")!=null)
 				horecaTechDateTimePicker.data.iniTS = parseInt($(horecaTechDateTimePicker.data.target).attr("ts"));
 			else {
@@ -547,21 +557,21 @@
 				horecaTechDateTimePicker.data.stopwatch=true
 			};
 			horecaTechDateTimePicker.data.SecTS=horecaTechDateTimePicker.data.iniTS;
-			for (var level in horecaTechDateTimePicker.tarOpt[horecaTechDateTimePicker.data.targetID].LevelSet) {
+			for (var level in tarOpt.LevelSet) {
 				hdtpicker_Process(level,horecaTechDateTimePicker.data.iniTS);
 				hdtpicker_align(level,horecaTechDateTimePicker.data.iniTS);
 			};
 			if (horecaTechDateTimePicker.data.stopwatch) {
-				$("#hdtpicker_now_button").html("<center>"+horecaTechDateTimePicker.tarOpt[horecaTechDateTimePicker.data.targetID].STOP+"</center>");
+				$("#hdtpicker_now_button").html("<center>"+tarOpt.STOP+"</center>");
 				horecaTechDateTimePicker.data.nowTimer=hdtpicker_Timer.Start("","I",1000/100,function() {
 					horecaTechDateTimePicker.data.iniTS=new Date().getTime()+horecaTechDateTimePicker.data.NowShift;
-					if (Math.floor(horecaTechDateTimePicker.data.iniTS/1000)*1000==Math.floor(horecaTechDateTimePicker.data.SecTS/1000)*1000) {
-						$("#p"+(horecaTechDateTimePicker.tarOpt[horecaTechDateTimePicker.data.targetID].LevelSet.length-1)).css({top:horecaTechDateTimePicker.data.windowHeight/2+horecaTechDateTimePicker.data.windowOffset-1+Math.round((horecaTechDateTimePicker.data.iniTS-Math.floor(horecaTechDateTimePicker.data.iniTS/1000)*1000)/horecaTechDateTimePicker.tarOpt[horecaTechDateTimePicker.data.targetID].HeightFactor[horecaTechDateTimePicker.tarOpt[horecaTechDateTimePicker.data.targetID].LevelSet[horecaTechDateTimePicker.tarOpt[horecaTechDateTimePicker.data.targetID].LevelSet.length-1]])})
-					} else {
+					if (Math.floor(horecaTechDateTimePicker.data.iniTS/1000)*1000==Math.floor(horecaTechDateTimePicker.data.SecTS/1000)*1000)
+						$("#p"+(tarOpt.LevelSet.length-1)).css({top:horecaTechDateTimePicker.data.windowHeight/2+horecaTechDateTimePicker.data.windowOffset-1+Math.round((horecaTechDateTimePicker.data.iniTS-Math.floor(horecaTechDateTimePicker.data.iniTS/1000)*1000)/tarOpt.HeightFactor[tarOpt.LevelSet[tarOpt.LevelSet.length-1]])})
+					else {
 						horecaTechDateTimePicker.data.SecTS=horecaTechDateTimePicker.data.iniTS;
-						for (var level in horecaTechDateTimePicker.tarOpt[horecaTechDateTimePicker.data.targetID].LevelSet) {
+						for (var level in tarOpt.LevelSet) {
 							hdtpicker_Process(level,horecaTechDateTimePicker.data.iniTS);
-							if (level<=horecaTechDateTimePicker.tarOpt[horecaTechDateTimePicker.data.targetID].LevelSet.length-1)
+							if (level<=tarOpt.LevelSet.length-1)
 								hdtpicker_align(level,horecaTechDateTimePicker.data.iniTS,true);
 						};
 						$("#hdtpicker_bar,.hdtpicker_column_bar").css({display:"block"});
@@ -569,7 +579,7 @@
 					};
 				})	
 			} else {
-				$("#hdtpicker_now_button").html("<center>"+horecaTechDateTimePicker.tarOpt[horecaTechDateTimePicker.data.targetID].NOW+"</center>");
+				$("#hdtpicker_now_button").html("<center>"+tarOpt.NOW+"</center>");
 			}
 			$(".hdtpicker_column_bar_button").on("click",function (event) {
 				event.stopPropagation();
@@ -590,14 +600,14 @@
 						hdtpicker_rollout((TS-horecaTechDateTimePicker.data.iniTS)/Math.pow(iterCnt/2,2),(horecaTechDateTimePicker.data.iniTS>TS)?1:-1,level,TS,iterCnt,1)
 				}
 			})
-			$(document).on("touchmove",hdtmoveprogress);
-			$(document).on("mousemove",hdtmoveprogress);
-			$(document).on("touchend",hdtmoveend);
-			$(document).on("mouseup",hdtmoveend);
+			$(document).on("touchmove.hdtdatetime",hdtmoveprogress);
+			$(document).on("mousemove.hdtdatetime",hdtmoveprogress);
+			$(document).on("touchend.hdtdatetime",hdtmoveend);
+			$(document).on("mouseup.hdtdatetime",hdtmoveend);
 //			$(document).on("mouseleave",hdtmoveend);
-			$(".hdtpicker_column_holder").on("touchstart",hdtmovestart);
-			$(".hdtpicker_column_holder").on("mousedown",hdtmovestart);
-			$(".hdtpicker_column_holder,.hdtpicker_column_bar_button").on("mousewheel", function(event) {
+			$(".hdtpicker_column_holder").on("touchstart.hdtdatetime",hdtmovestart);
+			$(".hdtpicker_column_holder").on("mousedown.hdtdatetime",hdtmovestart);
+			$(".hdtpicker_column_holder,.hdtpicker_column_bar_button").on("mousewheel.hdtdatetime", function(event) {
 				event.stopPropagation();
 				event.preventDefault();	
 				event.cancelBubble=true;
@@ -653,9 +663,9 @@
 					$("#p"+(horecaTechDateTimePicker.tarOpt[horecaTechDateTimePicker.data.targetID].LevelSet.length-1)).css({top:horecaTechDateTimePicker.data.windowHeight/2+horecaTechDateTimePicker.data.windowOffset-1+Math.round((horecaTechDateTimePicker.data.iniTS-Math.floor(horecaTechDateTimePicker.data.iniTS/1000)*1000)/horecaTechDateTimePicker.tarOpt[horecaTechDateTimePicker.data.targetID].HeightFactor[horecaTechDateTimePicker.tarOpt[horecaTechDateTimePicker.data.targetID].LevelSet[horecaTechDateTimePicker.tarOpt[horecaTechDateTimePicker.data.targetID].LevelSet.length-1]])})
 					horecaTechDateTimePicker.data.nowTimer=hdtpicker_Timer.Start("","I",1000/100,function() {
 						horecaTechDateTimePicker.data.iniTS=new Date().getTime()+horecaTechDateTimePicker.data.NowShift;
-						if (Math.floor(horecaTechDateTimePicker.data.iniTS/1000)==Math.floor(horecaTechDateTimePicker.data.SecTS/1000)) {
+						if (Math.floor(horecaTechDateTimePicker.data.iniTS/1000)==Math.floor(horecaTechDateTimePicker.data.SecTS/1000))
 							$("#p"+(horecaTechDateTimePicker.tarOpt[horecaTechDateTimePicker.data.targetID].LevelSet.length-1)).css({top:horecaTechDateTimePicker.data.windowHeight/2+horecaTechDateTimePicker.data.windowOffset-1+Math.round((horecaTechDateTimePicker.data.iniTS-Math.floor(horecaTechDateTimePicker.data.iniTS/1000)*1000)/horecaTechDateTimePicker.tarOpt[horecaTechDateTimePicker.data.targetID].HeightFactor[horecaTechDateTimePicker.tarOpt[horecaTechDateTimePicker.data.targetID].LevelSet[horecaTechDateTimePicker.tarOpt[horecaTechDateTimePicker.data.targetID].LevelSet.length-1]])})
-						} else {
+						else {
 							horecaTechDateTimePicker.data.SecTS=horecaTechDateTimePicker.data.iniTS;
 							for (var level in horecaTechDateTimePicker.tarOpt[horecaTechDateTimePicker.data.targetID].LevelSet) {
 								hdtpicker_Process(level,horecaTechDateTimePicker.data.iniTS);
@@ -672,9 +682,7 @@
 				event.stopPropagation();
 				event.preventDefault();	
 				event.cancelBubble=true;
-				$("#hdtpicker_frame").remove();
-				$(document).off("mousedown.hdtdatetime touchstart.hdtdatetime keydown.hdtdatetime scroll.hdtdatetime");
-				hdtpicker_Timer.Abort(horecaTechDateTimePicker.data.nowTimer);
+                                hdtremoveAll();
 				if (horecaTechDateTimePicker.tarOpt[horecaTechDateTimePicker.data.targetID].TruncateResult)
 					horecaTechDateTimePicker.data.iniTS=hdtpicker_datetruncateTS(horecaTechDateTimePicker.data.iniTS,horecaTechDateTimePicker.tarOpt[horecaTechDateTimePicker.data.targetID].LevelSet.length-1);
 				switch (horecaTechDateTimePicker.tarOpt[horecaTechDateTimePicker.data.targetID].ResultMode) {
@@ -694,9 +702,7 @@
 				e.stopPropagation();
 			});
 			$(document).on("mousedown.hdtdatetime touchstart.hdtdatetime keydown.hdtdatetime",function(event) {
-				$("#hdtpicker_frame").remove();
-				$(document).off("mousedown.hdtdatetime touchstart.hdtdatetime keydown.hdtdatetime scroll.hdtdatetime");
-				hdtpicker_Timer.Abort(horecaTechDateTimePicker.data.nowTimer);
+                                hdtremoveAll();
 				if (horecaTechDateTimePicker.tarOpt[horecaTechDateTimePicker.data.targetID].FlagOnBlur || horecaTechDateTimePicker.tarOpt[horecaTechDateTimePicker.data.targetID].FlagOnStop || horecaTechDateTimePicker.tarOpt[horecaTechDateTimePicker.data.targetID].FlagInProgress) {
 					if (horecaTechDateTimePicker.tarOpt[horecaTechDateTimePicker.data.targetID].TruncateResult)
 						horecaTechDateTimePicker.data.iniTS=hdtpicker_datetruncateTS(horecaTechDateTimePicker.data.iniTS,horecaTechDateTimePicker.tarOpt[horecaTechDateTimePicker.data.targetID].LevelSet.length-1);
