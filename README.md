@@ -34,6 +34,10 @@ parameters of callback:
 [Example](http://rawgit.com/dmitrigur/Date-Time-Picker-Relational-Slider-/master/example.html)
 </h2>
 
+	<link href="https://rawgit.com/dmitrigur/Date-Time-Picker-Relational-Slider-/master/datetimepicker.css" rel="stylesheet">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+        <script src="https://rawgit.com/dmitrigur/Date-Time-Picker-Relational-Slider-/master/datetimepicker.js"></script>
+    
 	<p>Date Time (Result type: 'time')<input id="a1"></p>
 	<p>Date (Result type: 'date', Input is changing on Stop & in Progress)<input id="a2"></p>
 	<p>Date (Result type: 'object', Inputs are changing on Stop & on Blur)
